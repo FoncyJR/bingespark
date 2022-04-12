@@ -10,43 +10,68 @@
 </head>
 
 <body>
+    <!------------ NAVBAR------------>
+
     <div class="navbar">
         <a class="logo" href="#"><img src="images/bingesparkLogo.png" height="141px" width="140px" alt="bingespark logo"></a>
         <nav>
-            <a class="searchbar" href="#"> searchbar</a>
+            <h2>Search:<input type="text" class="searchbar"><button><img class="go" src="images/magnifyingGlass.png" alt="search magnifying glass"></button></h2>
 
         </nav>
-        <a class="profile" href=""> profile button</a>
-        <a href="#" class="hamburger">hamburger menu</a>
+        <a class="profile" href=""><img src="images/profileButton.png" height="45px" width="45px" alt="profile"></a>
+        <a href="#" class="hamburger"><img src="images/hamburger.png" alt="hamburger menu icon"></a>
     </div>
+    <!------------ MAIN BODY------------>
+
     <div class="main">
         <!--- scrolling news from api-->
-        <div class="news">
-            Scrolling news..........
+        <div class="banner">
+            <h3> Scrolling news..........</h3>
         </div>
         <!--featured movies carousel-->
-        <div class="carousel">Featured Movies
+        <div class="carousel">
+            <div class="carousel__title">Featured Movies</div>
             <img src="images/avatar.webp" height="400px" alt="example for space">
+            <div class="movie__title">Movie Title</div>
 
         </div>
+        <div class="main__info"></div>
 
+        <div class="main__categories">
+            <h5>Categories</h5>
+
+            <ul>
+                <li><a href="#">Films</a></li>
+                <li><a href="#">Genres</a></li>
+                <li><a href="#">Actors</a></li>
+                <li><a href="#">Directors</a></li>
+                <li><a href="#">Random</a></li>
+            </ul>
+        </div>
         <!--COME BACK TO THESE-->
-        <div class="a">TBC 1</div>
-        <div class="b">TBC 2</div>
-
+        <div class="main__news"> Imported news from aggregator site?</div>
     </div>
+    </div>
+    <!------------ FOOTER------------>
     <div class="footer">
         <div class="terms">
             <a href="#" class="terms__conditions">Terms & Conditions</a>
             </a>
         </div>
-        <div class="socialmedia">
-            <a href="https://www.flaticon.com/free-icons/instagram-sketched" title="instagram sketched icons"><img src="images/instagram.png" height="30px" alt="instagram logo"> Instagram sketched icons created by Pixel perfect - Flaticon</a>
-            <a href="" class="twitter"><img src="images/twitter.png" height="30px" alt="twitter logo">Twitter icons created by Freepik - Flaticon</a>
-            <a href="https://www.flaticon.com/free-icons/facebook" title="facebook icons"><img src="images/facebook.png" height="30px" alt="facebook logo"> Facebook icons created by Freepik - Flaticon</a>
-            <a href="https://www.flaticon.com/free-icons/youtube" title="youtube icons"><img src="images/youtube.png" height="30px" alt="youtube logo"> Youtube icons created by Freepik - Flaticon</a>
+        <div class="footerCentre">
+            <div class="socialmedia">
+                <!-- Change these anchor hrefs to something?-->
+                <a href="https://www.flaticon.com/free-icons/instagram-sketched" title="instagram sketched icons"><img src="images/instagram.png" height="30px" alt="instagram logo"></a>
+                <a href="" class="twitter"><img src="images/twitter.png" height="30px" alt="twitter logo"></a>
+                <a href="https://www.flaticon.com/free-icons/facebook" title="facebook icons"><img src="images/facebook.png" height="30px" alt="facebook logo"></a>
+                <a href="https://www.flaticon.com/free-icons/youtube" title="youtube icons"><img src="images/youtube.png" height="30px" alt="youtube logo"></a>
+            </div>
+            <div class="socialmediaAcknowledgement">
+                <a href="https://www.flaticon.com/free-icons/instagram-sketched" title="instagram sketched icons">Social
+                    Media sketched icons created by Pixel perfect - Flaticon</a>
+            </div>
         </div>
-        <div class="student__details">Markus Condren 40128955</div>
+        <div class="student__details"><a href="https://github.com/FoncyJR" class="MC">Markus Condren</a> </div>
     </div>
 
 </body>

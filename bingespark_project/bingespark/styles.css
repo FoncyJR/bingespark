@@ -13,6 +13,9 @@ div {
     outline: red solid medium;
 }
 
+
+/*End debug*/
+
 a:hover {
     color: #FF4000;
 }
@@ -31,7 +34,8 @@ a:hover {
 }
 
 .navbar li,
-a {
+a,
+h2 {
     color: #edf0f1;
     font-weight: 400;
     font-size: 16px;
@@ -47,12 +51,19 @@ a {
     width: 50%;
 }
 
+.go {
+    background-color: #201E1F;
+}
+
 .profile {
-    width: 12.5%;
+    width: auto;
+    margin-left: auto;
+    margin-right: 1%;
 }
 
 .hamburger {
-    width: 25%;
+    width: auto;
+    margin: auto 5%;
 }
 
 .nav__links {
@@ -61,7 +72,7 @@ a {
 
 .nav__links li {
     display: inline-block;
-    padding: 0, 20px;
+    padding: 0, 1%;
 }
 
 .nav__links li a {
@@ -82,28 +93,45 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 30px, 10%
+    padding: 30px, 10%;
 }
 
-.news {
+.banner * {
     background-color: #FF4000;
-    margin: auto;
+    color: #201E1F;
     text-align: center;
     width: 100%;
-    padding-top: 0;
+    height: 22.5%;
+    position: inherit;
+    margin: 5%;
+    padding-top: 2%;
 }
 
-.a {
-    align-content: space-between;
-    flex: 1;
-    margin-right: 10%;
-    flex-direction: row;
+.carousel {
+    background-color: #201E1F;
+    color: #FEEFDD;
+    margin: 2% auto;
+    text-align: center;
+    padding-top: 2%;
+    width: 75%;
 }
 
-.b {
+.main__info {
+    flex-direction: row;
+    padding-top: 2%;
+}
+
+.main__categories * {
+    color: #201E1F;
+}
+
+.main__categories {
     align-content: space-between;
     flex: 1;
-    flex-direction: row;
+}
+
+.main__news {
+    align-content: space-between;
 }
 
 .footer {
@@ -134,6 +162,12 @@ a {
 }
 
 .socialmedia a {
+    background-color: #50B2C0;
+    max-height: 65px;
+    font-size: 4px;
+}
+
+.socialmediaAcknowledgement a {
     background-color: #50B2C0;
     max-height: 65px;
     font-size: 4px;
