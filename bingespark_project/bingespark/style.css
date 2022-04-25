@@ -1,0 +1,54 @@
+/*All*/
+
+* {
+    font-family: 'Space Mono', monospace;
+}
+
+
+/* a tag behaviour */
+
+a:link {
+    color: #FEEFDD;
+}
+
+a:visited {
+    color: #FEEFDD;
+}
+
+a:hover {
+    color: #FF4000;
+}
+
+
+/*Navbar*/
+
+#navbar {
+    background-color: #201E1F;
+}
+
+#profile-btn {
+    background-color: #FF4000;
+    color: #FEEFDD;
+}
+
+
+/*Main body*/
+
+body {
+    background-color: #FEEFDD;
+}
+
+
+/*Footer*/
+
+#footer {
+    background-color: #50B2C0;
+}
+
+
+/* Media Queries */
+
+
+/* 768px and up */
+
+@media (min-width: 768px) {}
