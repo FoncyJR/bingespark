@@ -1,21 +1,6 @@
-/* Debug */
+/*All*/
 
-.col-sm-1,
-.col-sm-2,
-.col-sm-3,
-.col-sm-4,
-.col-sm-5,
-.col-sm-6,
-.col-sm-7,
-.col-sm-8 {
-    border: medium solid red;
-}
-
-
-/* Page-wide */
-
-body {
-    background-color: #FEEFDD;
+* {
     font-family: 'Space Mono', monospace;
 }
 
@@ -35,165 +20,29 @@ a:hover {
 }
 
 
-/* Navbar */
+/*Navbar*/
 
-nav {
+#navbar {
     background-color: #201E1F;
-    color: #FEEFDD;
-    height: auto;
-}
-
-#logo-img {
-    max-width: 250%;
-    max-height: 250%;
-    min-width: 80%;
-    min-height: 80%;
-    width: auto;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    margin: auto;
-}
-
-.navbar-nav {
-    list-style: none;
-    align-items: stretch;
-}
-
-.form-group {
-    display: flex;
-    width: 70%;
-}
-
-#mag-glass-btn {
-    background-color: #201E1F;
-    border: none;
-}
-
-#hamburger-btn {
-    color: #FEEFDD;
-    background-color: #201E1F;
-    border: none;
-    align-content: right;
 }
 
 #profile-btn {
-    display: none;
+    background-color: #FF4000;
+    color: #FEEFDD;
 }
 
 
-/* Hamburger icon animation - code adapted from GitHub user haydn5 https://github.com/haydn5/animated-navigation-safari-fix */
+/*Main body*/
 
-.navbar-toggler {
-    width: 20px;
-    height: 20px;
-    position: relative;
-    transition: .65s ease-in-out;
-}
-
-.navbar-toggler,
-.navbar-toggler:focus,
-.navbar-toggler:active,
-.navbar-toggler-icon:focus {
-    outline: none;
-    box-shadow: none;
-    border: 0;
-    position: relative;
-}
-
-.navbar-toggler span {
-    margin: 0;
-    padding: 0;
-}
-
-.toggler-icon {
-    display: block;
-    position: absolute;
-    height: 3px;
-    width: 100%;
-    background: #FF4000;
-    border-radius: 1px;
-    opacity: 1;
-    left: 0;
-    transform: rotate(0deg);
-    transition: .20s ease-in-out;
-}
-
-.middle-bar {
-    margin-top: 0px;
-}
-
-
-/* State when the navbar is collapsed */
-
-.navbar-toggler.collapsed .top-bar {
-    position: absolute;
-    top: 0px;
-    transform: rotate(0deg);
-}
-
-.navbar-toggler.collapsed .middle-bar {
-    opacity: 1;
-    position: absolute;
-    top: 10px;
-    filter: alpha(opacity=100);
-}
-
-.navbar-toggler.collapsed .bottom-bar {
-    position: absolute;
-    top: 20px;
-    transform: rotate(0deg);
-}
-
-
-/* hamburger icon clicked */
-
-.navbar-toggler .top-bar {
-    top: inherit;
-    transform: rotate(135deg);
-}
-
-.navbar-toggler .middle-bar {
-    display: none;
-    top: inherit;
-    filter: alpha(opacity=0);
-}
-
-.navbar-toggler .bottom-bar {
-    top: inherit;
-    transform: rotate(-135deg);
-}
-
-.navbar-toggler.collapsed .toggler-icon {
+body {
     background-color: #FEEFDD;
 }
 
 
-/* Main body */
-
-#main-body {
-    display: flex;
-    overflow: scroll;
-    height: 100%;
-    bottom: 0;
-}
-
-
-/* Footer */
+/*Footer*/
 
 #footer {
     background-color: #50B2C0;
-    position: fixed;
-    height: 5%;
-    width: 100%;
-    bottom: 0;
-    font-size: 0.6em;
-}
-
-#social-media-icons {
-    overflow: none;
-    height: 40%;
-    width: 40%;
 }
 
 
@@ -243,3 +92,6 @@ nav {
         width: 30%;
     }
 }
+
+
+/* TO ADD */
