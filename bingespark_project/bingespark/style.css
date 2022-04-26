@@ -8,11 +8,11 @@
 /* a tag behaviour */
 
 a:link {
-    color: #FEEFDD;
+    color: #201E1F;
 }
 
 a:visited {
-    color: #FEEFDD;
+    color: #201E1F;
 }
 
 a:hover {
@@ -24,6 +24,20 @@ a:hover {
 
 #navbar {
     background-color: #201E1F;
+}
+
+.navbar-brand {
+    margin-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#bingespark-logo {
+    width: 10%;
+    margin-top: 0;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 #profile-btn {
