@@ -1,0 +1,102 @@
+/*-----------------------General-----------------------*/
+
+
+/*Mobile first - larger screen sizes taken care of using media queries (below) and Bootstrap grid*/
+
+* {
+    font-family: 'Space Mono', monospace;
+    list-style: none;
+}
+
+
+/* a tag behaviour site-wide */
+
+a:link {
+    color: #201E1F;
+}
+
+a:visited {
+    color: #201E1F;
+}
+
+a:hover {
+    color: #FF4000;
+}
+
+
+/*Navbar*/
+
+#navbar {
+    background-color: #201E1F;
+}
+
+.navbar-brand {
+    width: 70%;
+}
+
+.navbar-brand img {
+    max-width: 30%;
+}
+
+#bingespark-logo {
+    width: 10%;
+    margin-top: 0;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#profile-btn {
+    background-color: #FF4000;
+    color: #FEEFDD;
+}
+
+
+/*Main body*/
+
+body {
+    background-color: #FEEFDD;
+}
+
+
+/*Footer*/
+
+#footer {
+    background-color: #50B2C0;
+}
+
+.dropdown-menu a img {
+    max-width: 10%;
+    max-width: 10%;
+}
+
+
+/*Contact page*/
+
+#contact-submit {
+    padding-top: 2%;
+}
+
+
+/*Profile page*/
+
+#profile-panel-heading {
+    background-color: #50B2C0;
+    color: #FFFFFF;
+}
+
+#profile-panel-body {
+    background-color: #FEEFDD;
+}
+
+#profile-pills {
+    background-color: #FEEFDD;
+}
+
+
+/*---------------------Media Queries--------------------*/
+
+
+/* 768px and up */
+
+@media (min-width: 768px) {}
