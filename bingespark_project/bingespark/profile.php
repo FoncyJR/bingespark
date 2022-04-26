@@ -1,3 +1,5 @@
+<?php
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +30,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><img src="images/bingesparkLogo.png" alt="bingespark logo" id="bingespark-logo"></a>
+                <a class="navbar-brand" href="index.php"><img src="images/bingesparkLogo.png" alt="bingespark logo" id="bingespark-logo"></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -64,95 +66,85 @@
 
 
     <!--Body-->
-    <div class="container-fluid" id="main-body">
-        <!--Carousel-->
-        <div class="container">
-            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                </ol>
 
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox">
-                    <div class="item active">
-                        <!--------Come back and add images------------->
-                        <img src="https://c4.wallpaperflare.com/wallpaper/92/398/576/music-tenacious-d-wallpaper-preview.jpg" alt="...">
-                        <div class="carousel-caption">
-                            Tenacious D: The Pick of Destiny (2006)
-                        </div>
+    <div class="container-fluid" id="profile-panel">
+        <div class="panel panel-default">
+            <div class="panel-heading" id="profile-panel-heading">
+                <h3 class="panel-title">Profile </h3>
+                <!---Change to dynamic username?-->
+            </div>
+            <div class="panel-body" id="profile-panel-body">
+
+                <div class="row">
+                    <div class="col-xs-4 col-sm-4 col-md-4"><img src="#" alt="profile picture"></div>
+                    <div class="col-xs-8 col-sm-8 col-md-8">
+                        <ul>
+                            <li>First Name Last Name</li>
+                            <li>username (email)</li>
+                            <li role="separator" class="divider"></li>
+                        </ul>
+
                     </div>
-                    <div class="item">
-                        <img src="https://i.pinimg.com/originals/d4/27/b2/d427b2a2c6f3c7d9dc26b26805036305.jpg" alt="...">
-                        <div class="carousel-caption">
-                            The Mask (1994)
-                        </div>
-                    </div>
-                    <div class="item">
-                        <img src="https://i.redd.it/5r2r7jr277i81.jpg" alt="...">
-                        <div class="carousel-caption">
-                            The Batman (2022)
-                        </div>
-                    </div>
-                    <!---------------Add more cards here------------>
+
+
                 </div>
 
-                <!-- Controls -->
-                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
             </div>
         </div>
+    </div>
+    <div class="container-fluid" id="profile-panel">
+        <div class="panel panel-default">
 
-        <!--More Body-->
-        <div class="container pt-4">
-            <!---padding top 4 needed atm remove from html and add to css-->
-            <!--Categories-->
-            <div class="row">
-                <div class="col-sm-6">
-                    <h3>Categories</h3>
-                    <p>
+            <div class="panel-body" id="profile-panel-body">
+                <div class="row">
+                    <div class="col-xs-8 col-sm-8 col-md-8">
+                        <div class="panel-heading" id="profile-panel-options">
+                            <h3 class="panel-title">Options within each menu section- example Settings </h3>
+                            <!---Change to dynamic username?-->
+                        </div>
+
                         <ul>
-                            <li><a href="#" class="" id="">Movies</a></li>
-                            <li><a href="#" class="" id="">Genres</a></li>
-                            <li><a href="#" class="" id="">Actors</a></li>
-                            <li><a href="#" class="" id="">Directors</a></li>
-                            <li><a href="#" class="" id="">Movies</a></li>
-                            <li><a href="#" class="" id="">Movies</a></li>
-                        </ul>
-                    </p>
-                </div>
-                <!--News-->
-                <div class="col-sm-6">
-                    <h3>Latest News</h3>
-                    <ul>
-                        <li>a</li>
-                        <li>b</li>
-                        <li>c</li>
-                        <li>d</li>
-                        <li>e</li>
-                        <li>f</li>
-                    </ul>
-                </div>
-            </div>
+                            <li>Change Name</li>
+                            <li>Change Password</li>
+                            <li>Change Profile picture</li>
 
+                            <li>Delete account etc...</li>
+                            <li>Settings</li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="panel-heading" id="profile-panel-options">
+                            <h3 class="panel-title">Profile Options </h3>
+                            <!---Change to dynamic username?-->
+                        </div>
+                        <nav id="profile-pills">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li role="presentation" class="active"><a href="#">Favourites</a></li>
+                                <li role="presentation"><a href="#">Reviews</a></li>
+                                <li role="presentation"><a href="#">Settings</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+
+
+            </div>
 
         </div>
     </div>
+    </div>
+
+
+
+
 
     <!--Footer-->
     <nav class="navbar navbar-default navbar-fixed-bottom" id="footer">
         <div class="container">
             <div class="row">
 
-                <div class="col-xs-6 col-sm-6 col-md-6" id="social-dropdown">
+                <div class="col-xs-6 col-sm-6 col-md-6">
                     <div class="btn-group dropup">
                         <button type="button" class="btn btn-default">Social Media</button>
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -192,9 +184,3 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 </body>
-
-<!-- <div class="btn-group" role="group" aria-label="..."> -->
-<!-- <button type="button" class="btn btn-default"><img src="images/instagram.png" alt="instagram logo"></a></button>
-                        <button type="button" class="btn btn-default"><a><img src="images/twitter.png" alt="twitter logo" ></a></button>
-                        <button type="button" class="btn btn-default"><a><img src="images/facebook.png" alt="facebook logo"></a></button>
-                        <a><img src="images/youtube.png" alt="youtube logo"></a>

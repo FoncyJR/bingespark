@@ -1,11 +1,15 @@
-/*All*/
+/*-----------------------General-----------------------*/
+
+
+/*Mobile first - larger screen sizes taken care of using media queries (below) and Bootstrap grid*/
 
 * {
     font-family: 'Space Mono', monospace;
+    list-style: none;
 }
 
 
-/* a tag behaviour */
+/* a tag behaviour site-wide */
 
 a:link {
     color: #201E1F;
@@ -27,9 +31,11 @@ a:hover {
 }
 
 .navbar-brand {
-    margin-top: 0;
-    padding-left: 0;
-    padding-right: 0;
+    width: 70%;
+}
+
+.navbar-brand img {
+    max-width: 30%;
 }
 
 #bingespark-logo {
@@ -59,8 +65,36 @@ body {
     background-color: #50B2C0;
 }
 
+.dropdown-menu a img {
+    max-width: 10%;
+    max-width: 10%;
+}
 
-/* Media Queries */
+
+/*Contact page*/
+
+#contact-submit {
+    padding-top: 2%;
+}
+
+
+/*Profile page*/
+
+#profile-panel-heading {
+    background-color: #50B2C0;
+    color: #FFFFFF;
+}
+
+#profile-panel-body {
+    background-color: #FEEFDD;
+}
+
+#profile-pills {
+    background-color: #FEEFDD;
+}
+
+
+/*---------------------Media Queries--------------------*/
 
 
 /* 768px and up */

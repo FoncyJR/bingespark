@@ -48,7 +48,7 @@
                     <li role="separator" class="divider"></li>
                     <li><a href="#">Explore</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">Contact</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="#">Random</a></li>
                 </ul>
@@ -65,6 +65,40 @@
 
     <!--Body-->
 
+
+    <!-- Wrapper container -->
+    <div class="container py-4">
+        <h3>Contact Form</h3>
+
+        <!-- Bootstrap 5 starter form -->
+        <form id="contactForm">
+
+            <!-- Name input -->
+            <div class="mb-3">
+                <label class="form-label" for="name">Name</label>
+                <input class="form-control" id="name" type="text" placeholder="Name" />
+            </div>
+
+            <!-- Email address input -->
+            <div class="mb-3">
+                <label class="form-label" for="emailAddress">Email Address</label>
+                <input class="form-control" id="emailAddress" type="email" placeholder="Email Address" />
+            </div>
+
+            <!-- Message input -->
+            <div class="mb-3">
+                <label class="form-label" for="message">Message</label>
+                <textarea class="form-control" id="message" type="text" placeholder="Message" style="height: 10rem;"></textarea>
+            </div>
+
+            <!-- Form submit button -->
+            <div class="d-grid" id="contact-submit">
+                <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+            </div>
+
+        </form>
+
+    </div>
 
 
     <!--Footer-->
@@ -112,9 +146,3 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 </body>
-
-<!-- <div class="btn-group" role="group" aria-label="..."> -->
-<!-- <button type="button" class="btn btn-default"><img src="images/instagram.png" alt="instagram logo"></a></button>
-                        <button type="button" class="btn btn-default"><a><img src="images/twitter.png" alt="twitter logo" ></a></button>
-                        <button type="button" class="btn btn-default"><a><img src="images/facebook.png" alt="facebook logo"></a></button>
-                        <a><img src="images/youtube.png" alt="youtube logo"></a>
