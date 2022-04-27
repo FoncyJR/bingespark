@@ -33,7 +33,7 @@ if ($conn->connect_error) {
 
 
 // reading csv file and adding to db
-$file = fopen("./csv/Movie-DataSet2_final.csv", 'r');
+$file = fopen("Movie-DataSet2_final.csv", 'r');
 
 if ($file === false) {
   echo "Cannot open the file".$file;
