@@ -79,6 +79,9 @@ body {
 
 
 /*Profile page*/
+.nav-stacked .active {
+    background-color: #50B2C0;
+}
 
 #profile-panel-heading {
     background-color: #50B2C0;
@@ -99,4 +102,7 @@ body {
 
 /* 768px and up */
 
-@media (min-width: 768px) {}
+@media (min-width: 768px) {
+
+
+}
