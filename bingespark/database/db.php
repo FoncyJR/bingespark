@@ -2,8 +2,8 @@
 
 $host = "localhost";
 $user = "root";
-$pw = ""; //MAMP
-//$pw = "root"; //XAMPP
+$pw = "root"; //MAMP
+//$pw = ""; //XAMPP
 $db = "bingespark_test";
 
 $conn = new mysqli($host, $user, $pw, $db);
