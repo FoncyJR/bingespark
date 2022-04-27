@@ -33,10 +33,10 @@ if ($conn->connect_error) {
 
 
 // reading csv file and adding to db
-$file = fopen("Movie-DataSet2_final.csv", 'r');
+$file = fopen("./csv/Movie-DataSet2_final.csv", 'r');
 
 if ($file === false) {
-  echo "Cannot open the file" . $filename;
+  echo "Cannot open the file".$file;
   exit();
 }
 
@@ -44,18 +44,24 @@ while (($line = fgetcsv($file)) !== false) {
   // // read data from a single line
   // echo "<div> - INSERT INTO bingespark_test (laptopModel, currentPrice, launchDate) VALUES ($line[0], $line[1], $line[2]); </div>";
 
-  // assigning each line of csv to a variable
-  $title = $line[0];
-  $genre = $line[1];
-  $director = $line[2];
-  $actor = $line[3];
-  $year = $line[4];
-  $runtime = $line[5];
-  $revenue = $line[6];
+  // assigning each line of csv to a variable array
+  $titlearray = $line[0];
+  $genrearray = $line[1];
+  $directorarray = $line[2];
+  $actorarray = $line[3];
+  $yeararray = $line[4];
+  $runtimearray = $line[5];
+  $revenuearray = $line[6];
 
-  // // changing date format to fit db MIGHT BE USEFUL FOR USER DOB
-  // $bits = explode('/', $release);
-  // $release = "$bits[2],-$bits[1]-$bits[0]";
+                                            // // changing date format to fit db MIGHT BE USEFUL FOR USER DOB
+                                            // $bits = explode('/', $release);
+                                            // $release = "$bits[2],-$bits[1]-$bits[0]";
+
+  // splitting data from arrays
+  $genre = explode(",", $genrearray);
+  $actor = explode(",",$actorarray);
+  $director = explode(",",$directorarray);
+
 
 
   // sql statements
