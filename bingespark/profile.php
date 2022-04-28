@@ -116,7 +116,7 @@
                             <!---Change to dynamic username?-->
                         </div>
                         <nav id="profile-pills">
-                            <ul class="nav nav-pills nav-stacked navbar-">
+                            <ul class="nav nav-pills nav-stacked" id="pills-stacked">
                                 <!-- Make active pill #FF4000-->
                                 <li role="presentation" class="active"><a href="#">Favourites</a></li>
                                 <li role="presentation"><a href="#">Reviews</a></li>

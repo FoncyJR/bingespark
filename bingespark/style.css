@@ -79,7 +79,7 @@ body {
 
 
 /*Profile page*/
-.nav-stacked .active {
+#profile-pills > #pills-stacked > .active > a {
     background-color: #50B2C0;
 }
 
@@ -92,7 +92,7 @@ body {
     background-color: #FEEFDD;
 }
 
-#profile-pills {
+#profile-pills > #pills-stacked > .active > {
     background-color: #FEEFDD;
 }
 
