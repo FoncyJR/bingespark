@@ -1,6 +1,4 @@
-<!-- // changing date format to fit db MIGHT BE USEFUL FOR USER DOB
-  // $bits = explode('/', $release);
-  // $release = "$bits[2],-$bits[1]-$bits[0]"; -->
+
 
 <?php
 
@@ -267,43 +265,6 @@ while (($line = fgetcsv($file)) !== false) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-    // print_r($title);
-    // print_r($genre);
-    // print_r($director);
-    // print_r($actor);
-    // print_r($year);
-    // print_r($runtime);
-    // print_r($revenue);
-
-    // tidying split data - actors and genre
-    // trim white space
-
-
-
-
-    // pass through realescapestring
-
-
-
-    // sql statements
-    //   $insertlinemovie = "INSERT INTO movie (title, release_year, runtime, revenue) VALUES ('$title', '$year', '$runtime', '$revenue');";
-    //   $insertlineactor = "INSERT INTO actor (actor) VALUES ('$actor');";
-    //   $insertlinedirector = "INSERT INTO director (director) VALUES ('$director');";
-    //   $insertlinegenre = "INSERT INTO genre (genre) VALUES ('$genre');";
-
-
     //   // duplicates
     //   $duplicate = "SELECT * FROM bingespark_test WHERE title = '$title'";
     //   $checkduplicate = $dbconn->query($duplicate);
@@ -329,6 +290,9 @@ while (($line = fgetcsv($file)) !== false) {
     //     echo "$titleduplicate";
     //     $statementmovie = $dbconn->query($insertlinemovie);
     //   }
+    // changing date format to fit db MIGHT BE USEFUL FOR USER DOB
+    // $bits = explode('/', $release);
+    // $release = "$bits[2],-$bits[1]-$bits[0]";
 
 } //while loop end
 
@@ -336,32 +300,3 @@ while (($line = fgetcsv($file)) !== false) {
 fclose($file);
 
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <?php
-    include("partials/head.php")
-    ?>
-    <title>Document</title>
-</head>
-
-<body>
-    <div class="container">
-        <h1 class="title">
-            <?php
-            echo $check;
-
-
-            ?>
-        </h1>
-
-        <p class="subtitle">
-
-        </p>
-
-    </div>
-</body>
-
-</html>
