@@ -1,9 +1,7 @@
-
-
 <?php
 
 // db dbconnection
-include("dbconn.php");
+include("./dbconn.php");
 
 // declare csv as variable
 $file = fopen("../Movie-DataSet2_final.csv", 'r');
@@ -44,7 +42,7 @@ while (($line = fgetcsv($file)) !== false) {
         foreach ($year as $movieyear) {
 
             // OMDB API credentials
-            $endpoint_api = "http://www.omdbapi.com/?apikey=63ee3bba&t=$filmname&y=$year";
+            $endpoint_api = "http://www.omdbapi.com/?apikey=63ee3bba&t=$movie&y=$movieyear";
 
             // API data
             $data_api = file_get_contents($endpoint_api);
@@ -97,6 +95,15 @@ while (($line = fgetcsv($file)) !== false) {
             $runtime_array = trim($runtime_array, "'");
             $runtime_array = trim($runtime_array);
             $runtime_array = mysqli_real_escape_string($dbconn, $runtime_array);
+
+            // duplicates
+            $duplicate = "SELECT * FROM bingespark_test WHERE title = '$title'";
+            $checkduplicate = $dbconn->query($duplicate);
+
+            if ($checkduplicate->num_rows > 0) {
+
+                $title = "$title ($year)";
+            }
 
 
             // movie insert statement
@@ -198,7 +205,7 @@ while (($line = fgetcsv($file)) !== false) {
                     }
                 }
                 // populating many-to-many table    
-                $director_db = "SELECT * FROM director WHERE director_name = '$director_trim' ";
+                $director_db = "SELECT * FROM director WHERE director = '$director_trim' ";
                 $director_result = $dbconn->query($director_db);
 
                 if (!$director_result) {
@@ -249,7 +256,7 @@ while (($line = fgetcsv($file)) !== false) {
 
                 $row = $actor_result->fetch_assoc();
                 $actor_id = $row['actor_id'];
-                $actor_sql_mtm = "INSERT INTO bs_film_actor (film_id, actor_id) VALUES ('$insertedFilmId', '$actor_id')";
+                $actor_sql_mtm = "INSERT INTO movie_actor (movie_id, actor_id) VALUES ('$last_movie_insert_id', '$actor_id')";
 
                 $actor_insert_mtm = $dbconn->query($actor_sql_mtm);
                 if (!$actor_insert_mtm) {
@@ -263,40 +270,11 @@ while (($line = fgetcsv($file)) !== false) {
         } //foreach year end
     } //foreach movie end
 
+} //while loop end
 
-
-    //   // duplicates
-    //   $duplicate = "SELECT * FROM bingespark_test WHERE title = '$title'";
-    //   $checkduplicate = $dbconn->query($duplicate);
-
-    //   if ($checkduplicate->num_rows == 0) {
-
-    //     $statementmovie = $dbconn->query($insertlinemovie);
-    //     $statementactor = $dbconn->query($insertlineactor);
-    //     $statementdirector = $dbconn->query($insertlinedirector);
-    //     $statementgenre = $dbconn->query($insertlinegenre);
-
-
-    //     if (!$statement) {
-    //       echo "<div> SQL error -" . $dbconn->error . "</div>";
-    //     }
-    //   } else {
-    //     echo "<div>duplicate found at $title so don't insert row</div>";
-
-    //     $titleduplicate = "$title ($year)";
-    //     // sql statements
-    //     $insertlinemovie = "INSERT INTO movie (title, release_year, runtime, revenue) VALUES ('$title', '$year', '$runtime', '$revenue');";
-
-    //     echo "$titleduplicate";
-    //     $statementmovie = $dbconn->query($insertlinemovie);
-    //   }
     // changing date format to fit db MIGHT BE USEFUL FOR USER DOB
     // $bits = explode('/', $release);
     // $release = "$bits[2],-$bits[1]-$bits[0]";
-
-} //while loop end
-
+    
 // close file
-fclose($file);
-
-?>
+// fclose($file);

@@ -1,10 +1,28 @@
-<?php ?>
+<?php 
+
+include("./dbconn.php"); 
+
+$explore_query = "SELECT * FROM movie;";
+
+$explore_query_result = $dbconn->query($explore_query);
+
+if (!$explore_query_result) {
+	echo $dbconn->query($explore_query);
+}
+$movies = array();
+
+while ($row = $explore_query_result->fetch_assoc()) {
+	$movies[] = $row;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <?php include('partials/head.php') ?>
-    <title>bingespark profile</title>
+    <title>bingespark explore</title>
 </head>
 
 <body>
@@ -56,6 +74,46 @@
 
 
     <!--Body-->
+    <div class="container-fluid" id="profile-panel">
+        <div class="panel panel-default">
+            <div class="panel-heading" id="profile-panel-heading">
+                <h3 class="panel-title">Explore </h3>
+                <!---Change to dynamic username?-->
+            </div>
+            <div class="panel-body" id="profile-panel-body">
+
+                <div class="row">
+                    <div class="col-xs-4 col-sm-4 col-md-4">Filter</div>
+                    <div class="col-xs-8 col-sm-8 col-md-8">
+                        <ul>
+                            <li>
+                            <?php
+                            
+                            foreach($movies as $row){
+                                $movie_thumbnail = $row["thumnail"];
+                                $movie_title = $row["title"];
+                                $movie_year = $row["year"];
+                            
+                                echo "<a href='#'>
+                                <div class='box'>
+                                    <p>$movie_thumbnail</p>
+                                    <p>$movie_title</p>
+                                    <p>$movie_year</p>
+           
+                                </div>
+                            </a>";
+                            }
+                            ?>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 
     <!--Full list of all movies in db. 
