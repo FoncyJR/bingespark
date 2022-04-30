@@ -1,6 +1,6 @@
 <?php
 
-// db dbconnection
+// db connection
 include("./dbconn.php");
 
 // declare csv as variable
