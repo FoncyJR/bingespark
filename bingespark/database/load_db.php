@@ -3,7 +3,7 @@
 <?php
 
 // db dbconnection
-include("../dbconn.php");
+include("dbconn.php");
 
 // declare csv as variable
 $file = fopen("../Movie-DataSet2_final.csv", 'r');
@@ -47,7 +47,7 @@ while (($line = fgetcsv($file)) !== false) {
             $endpoint_api = "http://www.omdbapi.com/?apikey=63ee3bba&t=$filmname&y=$year";
 
             // API data
-            $data_api = file_get_contents($apiendpoint);
+            $data_api = file_get_contents($endpoint_api);
 
             if (!$data_api) {
                 echo $dbconn->error;
@@ -101,7 +101,7 @@ while (($line = fgetcsv($file)) !== false) {
 
             // movie insert statement
             $movie_sql = "INSERT INTO movie (movie_id, title, release_year, runtime, revenue, movie_desc, thumbnail, review_id) 
-            VALUES (null, '$title_trim', '$revenue_array', '$runtime_array', '$year_array', '$movie_desc', '$movie_thumb', null) ";
+            VALUES (null, '$title_trim', '$year_array', '$runtime_array', '$revenue_array', '$movie_desc', '$movie_thumb', null) ";
             // send insert statement to db
             $movie_insert = $dbconn->query($movie_sql);
             // check error
