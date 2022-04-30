@@ -168,14 +168,17 @@ while ($row = $explore_query_result->fetch_assoc()) {
                         <?php
 
                         foreach ($movies as $row) {
-                            $movie_thumbnail = $row["thumbnail"];
+
+                            if (strlen($row["thumbnail"]) > 0) {
+                              $movie_thumbnail = $row["thumbnail"];
+                            } else {
+                                $movie_thumbnail = '../database/moviePosterPlaceholder.png';
+                            };
                             $movie_title = $row["title"];
                             $movie_year = $row["release_year"];
 
-                            // if(is_null($row["thumbnail"])==null){
-                            //     $movie_thumbnail='../databases/moviePosterPlaceholder.png';
-                            // }
-                            
+
+
                             echo "
                             <div class='row' id='explore-movies'>
 
