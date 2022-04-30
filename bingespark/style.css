@@ -1,4 +1,4 @@
-/*-----------------------General-----------------------*/
+/*---------------------------------General---------------------------------*/
 
 
 /*Mobile first - larger screen sizes taken care of using media queries (below) and Bootstrap grid*/
@@ -9,7 +9,7 @@
 }
 
 
-/* a tag behaviour site-wide */
+/*a tag behaviour site-wide*/
 
 a:link {
     color: #201E1F;
@@ -70,15 +70,23 @@ body {
     max-width: 10%;
 }
 
+/*----Index----*/
 
-/*Contact page*/
+
+/*----Explore----*/
+
+#explore-poster{
+    padding-bottom: 10px;
+}
+
+/*----Contact----*/
 
 #contact-submit {
     padding-top: 2%;
 }
 
 
-/*Profile page*/
+/*----Profile----*/
 #profile-pills > #pills-stacked > .active > a {
     background-color: #FF4000;
 }
@@ -97,7 +105,7 @@ body {
 }
 
 
-/*---------------------Media Queries--------------------*/
+/*------------------------------------Media Queries-----------------------------------*/
 
 
 /* 768px and up */

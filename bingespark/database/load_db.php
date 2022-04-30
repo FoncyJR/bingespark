@@ -83,6 +83,11 @@ while (($line = fgetcsv($file)) !== false) {
             // thumbnail - using posters from api
             $movie_thumb = $movie_api["Poster"];
 
+            if (!$movie_thum) {
+
+                $movie_thumb = '../images/moviePosterPlaceholder.png';
+            }
+
 
             // tidy and trim data
             $title_trim = trim($title_array);

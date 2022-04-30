@@ -30,20 +30,141 @@ while ($row = $explore_query_result->fetch_assoc()) {
 <body>
 
     <!-- Navbar -->
-    <?php include('partials/navbar');?>
+    <?php include('partials/navbar.php'); ?>
 
     <!--Body-->
     <div class="container-fluid" id="profile-panel">
         <div class="panel panel-default">
             <div class="panel-heading" id="profile-panel-heading">
-                <h3 class="panel-title">Explore </h3>
+                <h3 class="panel-title">Explore</h3>
                 <!---Change to dynamic username?-->
             </div>
             <div class="panel-body" id="profile-panel-body">
 
+                <div class="row" id="explore-filter">
+
+                    <div class="col-xs-12 col-sm-4 col-md-4" id="explore-filter-dropdown">
+                        <div class="btn-group dropdown">
+                            <button type="button" class="btn btn-default">Genre</button>
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">Action</a>
+                                </li>
+                                <li>
+                                    <a href="#">Adventure</a>
+                                </li>
+                                <li>
+                                    <a href="#">Comedy</a>
+                                </li>
+                                <li>
+                                    <a href="#">Crime</a>
+                                </li>
+                                <li>
+                                    <a href="#">Drama</a>
+                                </li>
+                                <li>
+                                    <a href="#">Family</a>
+                                </li>
+                                <li>
+                                    <a href="#">Fantasy</a>
+                                </li>
+                                <li>
+                                    <a href="#">Horror</a>
+                                </li>
+                                <li>
+                                    <a href="#">Mystery</a>
+                                </li>
+                                <li>
+                                    <a href="#">Romantic</a>
+                                </li>
+                                <li>
+                                    <a href="#">Sci-Fi</a>
+                                </li>
+                                <li>
+                                    <a href="#">Thriller</a>
+                                </li>
+                                <li>
+                                    <a href="#">Western<a>
+                                </li>
+                                <li>
+                                    <a href="#">Biography</a>
+                                </li>
+                                <li>
+                                    <a href="#">Sport</a>
+                                </li>
+                                <li>
+                                    <a href="#">History</a>
+                                </li>
+                                <li>
+                                    <a href="#">War</a>
+                                </li>
+                                <li>
+                                    <a href="#">Animation</a>
+                                </li>
+                                <li>
+                                    <a href="#">Music</a>
+                                </li>
+                                <li>
+                                    <a href="#">Musical</a>
+                                </li>
+                                <li>
+                                    <a href="#">Children</a>
+                                </li>
+                                <li>
+                                    <a href="#">Classic</a>
+                                </li>
+                                <li>
+                                    <a href="#">Cult</a>
+                                </li>
+                                <li>
+                                    <a href="#">International</a>
+                                </li>
+                                <li>
+                                    <a href="#">Independent</a>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+
+
+                    <div class='col-xs-12 col-sm-4 col-md-4'>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Actor">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </div>
+
+                    <div class='col-xs-12 col-sm-4 col-md-4'>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Director">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+    </div>
+    </div>
+    <div class="container-fluid" id="profile-panel">
+        <div class="panel panel-default">
+            <div class="panel-heading" id="profile-panel-heading">
+                <h4 class="panel-title">Movies</h4>
+                <!---Change to dynamic username?-->
+            </div>
+            <div class="panel-body" id="profile-panel-body">
                 <div class="row">
-                    <div class="col-xs-3 col-sm-3 col-md-3">Filter</div>
-                    <div class="col-xs-9 col-sm-9 col-md-9">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
                         <?php
 
                         foreach ($movies as $row) {
@@ -51,17 +172,21 @@ while ($row = $explore_query_result->fetch_assoc()) {
                             $movie_title = $row["title"];
                             $movie_year = $row["release_year"];
 
-                            echo "
-                            <div class='row'>
-
-                            <div class='col'> 
-                            <img src='$movie_thumbnail' alt='$movie_title poster' height='200px'>
-                            </div>
-                            <div class='col'>
-                            <a href='#'>$movie_title</a>
-                            </div>
-                            <div class='col'>$movie_year</div>
+                            // if(is_null($row["thumbnail"])==null){
+                            //     $movie_thumbnail='../databases/moviePosterPlaceholder.png';
+                            // }
                             
+                            echo "
+                            <div class='row' id='explore-movies'>
+
+                            <div class='col-xs-12 col-sm-12 col-md-12'>
+                            <a href='#'><h4>$movie_title($movie_year)</h4></a>
+                            </div>
+
+                            <div class='col-xs-12 col-sm-12 col-md-12' id='explore-poster'> 
+                            <img src='$movie_thumbnail' alt='$movie_title poster'>
+                            </div>
+                
                             </div>
                             ";
                         }
@@ -83,13 +208,8 @@ while ($row = $explore_query_result->fetch_assoc()) {
 
 
     <!--Footer-->
-    <?php include('partials/footer');?>
+    <?php include('partials/footer.php'); ?>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 </body>
 
 </html>
