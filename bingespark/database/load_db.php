@@ -81,12 +81,12 @@ while (($line = fgetcsv($file)) !== false) {
             $movie_desc = mysqli_real_escape_string($dbconn, $movie_desc);
 
             // thumbnail - using posters from api
-            $movie_thumb = $movie_api["Poster"];
-
-            if (!$movie_thum) {
-
-                $movie_thumb = '../images/moviePosterPlaceholder.png';
-            }
+            
+            if (strlen($row["thumbnail"]) > 0) {
+                $movie_thumbnail = $row["thumbnail"];
+              } else {
+                  $movie_thumbnail = 'images/moviePosterPlaceholder.png';
+              };
 
 
             // tidy and trim data
