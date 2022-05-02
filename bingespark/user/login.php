@@ -4,13 +4,13 @@
 <html lang="en">
 
 <head>
-    <?php include('../partials/head.php') ?>
-    <title>bingespark login</title>
+    <?php include('../partials/head_2.php') ?>
+    <title>bingespark Log In</title>
 </head>
 
 <body>
     <!--Navbar-->
-    <?php include('./partials/navbar_2.php'); ?>
+    <?php include('../partials/navbar_2.php'); ?>
 
     <!--Body-->
 
@@ -39,22 +39,19 @@
                                         <input type="password" class="form-control" id="inputPassword3">
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Sign in</button>
+                                <button type="submit" class="btn btn-primary">Log In</button>
+
                             </form>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-sm-12 col-md-12 col-lg-12">
-                            <div class="control">
-                                <a href="signup.php"><button class="btn btn-default" type="submit" id="button-addon2">Create New Account</button></a>
-                            </div>
+                           <a href="signup.php"><button type="submit" class="btn btn-primary">Sign Up</button></a>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!--Footer-->
-            <?php include('../partials/footer.php'); ?>
+            <?php include('../partials/footer_2.php'); ?>
 
 </body>
 

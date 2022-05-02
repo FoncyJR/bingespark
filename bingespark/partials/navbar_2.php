@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../index.php"><img src="images/bingesparkLogo.png" alt="bingespark logo" id="bingespark-logo"></a>
+            <a class="navbar-brand" href="../index.php"><img src="../images/bingesparkLogo.png" alt="bingespark logo" id="bingespark-logo"></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -35,10 +35,10 @@
                 <li role="separator" class="divider"></li>
                 <li><a href="../random.php">Random</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="profile.php">Profile</a></li>
+                <li><a href="../profile.php">Profile</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="user/login.php" id="profile-btn">Log In<span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="login.php" id="profile-btn">Log In<span class="sr-only">(current)</span></a></li>
 
             </ul>
         </div>

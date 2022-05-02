@@ -33,7 +33,7 @@ while ($row = $explore_query_result->fetch_assoc()) {
 
 <head>
     <?php include('partials/head.php') ?>
-    <title>bingespark explore</title>
+    <title>bingespark Explore Random</title>
 </head>
 
 <body>

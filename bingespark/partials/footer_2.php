@@ -11,16 +11,16 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="https://www.instagram.com"><img src="images/instagram.png" alt="instagram link"> Instagram</a>
+                            <a href="https://www.instagram.com"><img src="../images/instagram.png" alt="instagram link"> Instagram</a>
                         </li>
                         <li>
-                            <a href="https://www.twitter.com"><img src="images/twitter.png" alt="twitter link"> Youtube</a>
+                            <a href="https://www.twitter.com"><img src="../images/twitter.png" alt="twitter link"> Youtube</a>
                         </li>
                         <li>
-                            <a href="https://www.facebook.com"><img src="images/facebook.png" alt="facebook link"> Facebook</a>
+                            <a href="https://www.facebook.com"><img src="../images/facebook.png" alt="facebook link"> Facebook</a>
                         </li>
                         <li>
-                            <a href="https://www.youtube.com"><img src="images/youtube.png" alt="youtube link"> Youtube</a>
+                            <a href="https://www.youtube.com"><img src="../images/youtube.png" alt="youtube link"> Youtube</a>
                         </li>
                     </ul>
                 </div>

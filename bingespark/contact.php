@@ -4,7 +4,7 @@
 
 <head>
     <?php include('partials/head.php') ?>
-    <title>bingespark contact</title>
+    <title>bingespark Contact</title>
 </head>
 
 <body>

@@ -4,8 +4,8 @@
 <html lang="en">
 
 <head>
-    <?php include('../partials/head.php') ?>
-    <title>bingespark login</title>
+    <?php include('../partials/head_2.php') ?>
+    <title>bingespark Sign Up</title>
 </head>
 
 <body>
@@ -19,7 +19,7 @@
         <div class="container-fluid" id="profile-panel">
             <div class="panel panel-default">
                 <div class="panel-heading" id="profile-panel-heading">
-                    <h3 class="panel-title">Log In</h3>
+                    <h3 class="panel-title">Sign Up</h3>
                     <!---Change to dynamic username?-->
                 </div>
                 <div class="panel-body" id="profile-panel-body">
@@ -43,7 +43,7 @@
 
 
         <!--Footer-->
-        <?php include('../partials/footer.php'); ?>
+        <?php include('../partials/footer_2.php'); ?>
 
 </body>
 
