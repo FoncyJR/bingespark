@@ -3,10 +3,11 @@
 // db connection
 include("database/dbconn.php");
 
+if (isset($_POST['search'])) {
+    $input_text = $_POST['search'];
+}
 
-    $input_text= htmlentities(urldecode($_POST['search']));
-
-    $search_query = "SELECT DISTINCT  movie.movie_id, movie.release_year,
+$search_query = "SELECT DISTINCT  movie.movie_id, movie.release_year,
     movie.title, movie.runtime, movie.thumbnail, movie.movie_desc
     FROM movie
     INNER JOIN  movie_genre
@@ -21,9 +22,9 @@ include("database/dbconn.php");
     ON movie.movie_id = movie_director.movie_director_id
     INNER JOIN director
     ON director.director_id = movie_director.director_id
-    WHERE actor.actor LIKE '%$input_text%' OR genre.genre LIKE '%$input_text%' OR director.director LIKE '%$input_text%' OR movie.title LIKE '%$input_text%'";
+    WHERE actor.actor LIKE '%$input_text%' OR genre.genre LIKE '%$input_text%' OR director.director LIKE '%$input_text%' OR movie.title LIKE '%$input_text%';";
 
-    $search_query_result = $dbconn->query($search_query);
+$search_query_result = $dbconn->query($search_query);
 
 
 if (!$search_query_result) {
@@ -49,13 +50,6 @@ while ($row = $explore_query_result->fetch_assoc()) {
     <!-- Navbar -->
     <?php include('partials/navbar.php'); ?>
 
-    <?php
-
-    foreach ($movies as $row) {
-        $movie_genre = $row["genre"];
-    }
-
-    ?>
     <!--Body-->
     <div class="container-fluid" id="profile-panel">
         <div class="panel panel-default">
@@ -68,119 +62,61 @@ while ($row = $explore_query_result->fetch_assoc()) {
                 <div class="row" id="explore-filter">
 
                     <div class="col-xs-12 col-sm-4 col-md-4" id="explore-filter-dropdown">
-                        <div class="btn-group dropdown">
-                            <button type="button" class="btn btn-default">Genre</button>
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="caret"></span>
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <ul class='dropdown-menu'>
-                                <li>
-                                    <?php echo "<a href='movie_genre.php?filter=$movie_genre'>Action</a>" ?>
-                                </li>
-                                <li>
-                                    <a href='#'>Adventure</a>
-                                </li>
-                                <li>
-                                    <a href='#'>Comedy</a>
-                                </li>
-                                <li>
-                                    <a href='#'>Crime</a>
-                                </li>
-                                <li>
-                                    <a href='#'>Drama</a>
-                                </li>
-                                <li>
-                                    <a href='#'>Family</a>
-                                </li>
-                                <li>
-                                    <a href='#'>Fantasy</a>
-                                </li>
-                                <li>
-                                    <a href='#'>Horror</a>
-                                </li>
-                                <li>
-                                    <a href='#'>Mystery</a>
-                                </li>
-                                <li>
-                                    <a href='#'>Romantic</a>
-                                </li>
-                                <li>
-                                    <a href='#'>Sci-Fi</a>
-                                </li>
-                                <li>
-                                    <a href='#'>Thriller</a>
-                                </li>
-                                <li>
-                                    <a href='#'>Western<a>
-                                </li>
-                                <li>
-                                    <a href='#'>Biography</a>
-                                </li>
-                                <li>
-                                    <a href='#'>Sport</a>
-                                </li>
-                                <li>
-                                    <a href='#'>History</a>
-                                </li>
-                                <li>
-                                    <a href='#'>War</a>
-                                </li>
-                                <li>
-                                    <a href='#'>Animation</a>
-                                </li>
-                                <li>
-                                    <a href='#'>Music</a>
-                                </li>
-                                <li>
-                                    <a href='#'>Musical</a>
-                                </li>
-                                <li>
-                                    <a href='#'>Children</a>
-                                </li>
-                                <li>
-                                    <a href='#'>Classic</a>
-                                </li>
-                                <li>
-                                    <a href='#'>Cult</a>
-                                </li>
-                                <li>
-                                    <a href='#'>International</a>
-                                </li>
-                                <li>
-                                    <a href='#'>Independent</a>
-                                </li>
+                        <form action="search/explore_filter_result.php" method="POST">
+                            <select name="genre">
+                                <option>Genre</option>
+                                <?php
 
-                            </ul>
-                        </div>
-
-                    </div>
-
-
-                    <div class='col-xs-12 col-sm-4 col-md-4'>
-                        <form class="navbar-form navbar-right">
-                            <div class="form-group">
-                                <div class="input-group mb-3" action="GET" action=>
-                                    <input type="text" name="search_query" value="<?php if (isset($_GET['search'])) {
-                                                                                        echo $_GET['search_query'];
-                                                                                    } ?>" class="form-control" placeholder="Actor" aria-label="Search" aria-describedby="basic-addon2">
-
-                                    <button class="btn btn-default" type="submit" id="button-addon2">Submit</button>
-                                </div>
+                                foreach ($genres as $row) {
+                                    $genre_filter = $row["genre"];
+                                ?>
+                                    <option>
+                                        <?php echo $genre_filter; ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                            <div class="control">
+                                <button class="btn btn-default" type="submit" id="button-addon2">Submit</button>
                             </div>
                         </form>
                     </div>
 
-                    <div class='col-xs-12 col-sm-4 col-md-4'>
-                        <form class="navbar-form navbar-right">
-                            <div class="form-group">
-                                <div class="input-group mb-3" action="GET">
-                                    <input type="text" name="search_query" value="<?php if (isset($_GET['search'])) {
-                                                                                        echo $_GET['search_query'];
-                                                                                    } ?>" class="form-control" placeholder="Director" aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="col-xs-12 col-sm-4 col-md-4" id="explore-filter-dropdown">
+                        <form action="search/explore_filter_result.php" method="POST">
+                            <select name="actor">
+                                <option>Actor</option>
+                                <?php
 
-                                    <button class="btn btn-default" type="submit" id="button-addon2">Submit</button>
-                                </div>
+                                foreach ($actors as $row) {
+                                    $actor_filter = $row["actor"];
+                                ?>
+                                    <option>
+                                        <?php echo $actor_filter; ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                            <div class="control">
+                                <button class="btn btn-default" type="submit" id="button-addon2">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4 col-md-4" id="explore-filter-dropdown">
+                        <form action="search/explore_filter_result.php" method="POST">
+                            <select name="director">
+                                <option>Director</option>
+                                <?php
+
+                                foreach ($directors as $row) {
+                                    $director_filter = $row["director"];
+                                ?>
+                                    <option>
+                                        <?php echo $director_filter; ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                            <div class="control">
+                                <button class="btn btn-default" type="submit" id="button-addon2">Submit</button>
                             </div>
                         </form>
                     </div>

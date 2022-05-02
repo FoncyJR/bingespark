@@ -26,14 +26,14 @@ if (isset($_POST['genre-filter'])) {
 }
 
 if (isset($_POST['actor-filter'])) {
-    $genre = $_POST['actor-filter'];
+    $actor = $_POST['actor-filter'];
 }
 
 if (isset($_POST['director-filter'])) {
-    $genre = $_POST['director-filter'];
+    $director = $_POST['director-filter'];
 }
-
-if (isset($genre)) {
+// ifelse checks if one of the filters has been used and changes the query accordingly
+if (isset($genre) && !isset($actor) && !isset($director)) {
     $filter_query = "SELECT DISTINCT  movie.movie_id, movie.release_year,
     movie.title, movie.runtime, movie.thumbnail, movie.movie_desc
     FROM movie
@@ -42,6 +42,24 @@ if (isset($genre)) {
     INNER JOIN genre
     ON genre.genre_id=movie_genre.genre_id
     WHERE genre.genre = $genre;";
+} else if (isset($actor) && !isset($genre) && !isset($director)) {
+    $filter_query = "SELECT DISTINCT  movie.movie_id, movie.release_year,
+    movie.title, movie.runtime, movie.thumbnail, movie.movie_desc
+    FROM movie
+    INNER JOIN  movie_genre
+    ON movie.movie_id=movie_genre.movie_id
+    INNER JOIN genre
+    ON genre.genre_id=movie_genre.genre_id
+    WHERE actor.actor = $actor;";
+} else if (isset($director) && !isset($actor) && !isset($genre)) {
+    $filter_query = "SELECT DISTINCT  movie.movie_id, movie.release_year,
+    movie.title, movie.runtime, movie.thumbnail, movie.movie_desc
+    FROM movie
+    INNER JOIN  movie_genre
+    ON movie.movie_id=movie_genre.movie_id
+    INNER JOIN genre
+    ON genre.genre_id=movie_genre.genre_id
+    WHERE director.director = $director;";
 }
 
 $filter_query_result = $dbconn->query($filter_query);
