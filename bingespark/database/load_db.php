@@ -5,6 +5,10 @@ include("./dbconn.php");
 
 // declare csv as variable
 $file = fopen("../Movie-DataSet2_final.csv", 'r');
+// $file = fopen("../Movie-1.csv", 'r');
+// $file = fopen("../Movie-2.csv", 'r');
+// $file = fopen("../Movie-3.csv", 'r');
+// $file = fopen("../Movie-4.csv", 'r');
 
 // check that file can be found
 if ($file === false) {
@@ -81,13 +85,7 @@ while (($line = fgetcsv($file)) !== false) {
             $movie_desc = mysqli_real_escape_string($dbconn, $movie_desc);
 
             // thumbnail - using posters from api
-            
-            if (strlen($row["thumbnail"]) > 0) {
-                $movie_thumbnail = $row["thumbnail"];
-              } else {
-                  $movie_thumbnail = 'images/moviePosterPlaceholder.png';
-              };
-
+            $movie_thumbnail = $row["Poster"];
 
             // tidy and trim data
             $title_trim = trim($title_array);

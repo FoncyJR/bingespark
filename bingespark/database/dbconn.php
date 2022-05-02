@@ -10,7 +10,7 @@ $host = "localhost";
 $user = "root";
 $pw = "root"; //MAMP
 //$pw = ""; //XAMPP
-$db = "bingespark_test";
+$db = "bingespark_test_b";
 
 // } else {
 //   //remote credentials

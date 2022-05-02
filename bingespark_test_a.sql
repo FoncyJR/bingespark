@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 30, 2022 at 12:30 PM
+-- Generation Time: May 02, 2022 at 11:31 AM
 -- Server version: 5.7.34
 -- PHP Version: 7.4.21
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bingespark_test`
+-- Database: `bingespark_test_a`
 --
 
 -- --------------------------------------------------------
@@ -78,6 +78,7 @@ CREATE TABLE `movie` (
 --
 
 CREATE TABLE `movie_actor` (
+  `movie_actor_id` int(11) NOT NULL,
   `movie_id` int(11) NOT NULL,
   `actor_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -89,6 +90,7 @@ CREATE TABLE `movie_actor` (
 --
 
 CREATE TABLE `movie_director` (
+  `movie_director_id` int(11) NOT NULL,
   `movie_id` int(11) NOT NULL,
   `director_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -100,6 +102,7 @@ CREATE TABLE `movie_director` (
 --
 
 CREATE TABLE `movie_genre` (
+  `movie_genre_id` int(11) NOT NULL,
   `movie_id` int(11) NOT NULL,
   `genre_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -155,6 +158,7 @@ ALTER TABLE `movie`
 -- Indexes for table `movie_actor`
 --
 ALTER TABLE `movie_actor`
+  ADD PRIMARY KEY (`movie_actor_id`),
   ADD KEY `FK_movie_movie_id_movie_actor` (`movie_id`),
   ADD KEY `FK_actor_actor_id_movie_actor` (`actor_id`);
 
@@ -162,6 +166,7 @@ ALTER TABLE `movie_actor`
 -- Indexes for table `movie_director`
 --
 ALTER TABLE `movie_director`
+  ADD PRIMARY KEY (`movie_director_id`),
   ADD KEY `FK_movie_movie_id_movie_director` (`movie_id`),
   ADD KEY `FK_director_director_id_movie_director` (`director_id`);
 
@@ -169,6 +174,7 @@ ALTER TABLE `movie_director`
 -- Indexes for table `movie_genre`
 --
 ALTER TABLE `movie_genre`
+  ADD PRIMARY KEY (`movie_genre_id`),
   ADD KEY `FK_movie_movie_id_movie_genre` (`movie_id`),
   ADD KEY `FK_genre_genre_id_movie_genre` (`genre_id`);
 
@@ -205,6 +211,24 @@ ALTER TABLE `genre`
 --
 ALTER TABLE `movie`
   MODIFY `movie_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `movie_actor`
+--
+ALTER TABLE `movie_actor`
+  MODIFY `movie_actor_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `movie_director`
+--
+ALTER TABLE `movie_director`
+  MODIFY `movie_director_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `movie_genre`
+--
+ALTER TABLE `movie_genre`
+  MODIFY `movie_genre_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`

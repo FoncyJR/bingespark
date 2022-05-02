@@ -3,19 +3,12 @@
 // db connection
 include("database/dbconn.php");
 
-$movie_genre = htmlentities($_GET["genre"]);
+$movie_genre = htmlentities(urldecode($_GET["filter"]));
 
 // gather data from db
-$explore_query = "SELECT * FROM movie INNER JOIN movie_genre ON movie.movie_id INNER JOIN genre ON genre.genre_id WHERE genre = '$movie_genre';";
-
-// REFINE TO JUST SELECT THE THINGS YOU NEED FOR ECHO
-// $explore_query = "SELECT * FROM movie
-// INNER JOIN movie_actor ON movie.movie_id
-// INNER JOIN actor ON actor.actor_id
-// INNER JOIN movie_genre ON movie.movie_id
-// INNER JOIN genre ON genre.genre_id
-// INNER JOIN movie_director ON movie.movie_id
-// INNER JOIN director ON director.director_id WHERE movie_id = 1";
+$explore_query = "SELECT * FROM movie, genre INNER JOIN movie_genre 
+                    ON movie.movie_id INNER JOIN genre 
+                    ON genre.genre_id WHERE genre = '$movie_genre';";
 
 $explore_query_result = $dbconn->query($explore_query);
 
@@ -30,6 +23,7 @@ while ($row = $explore_query_result->fetch_assoc()) {
 
     $movies[] = $row;
 }
+
 
 ?>
 
@@ -50,7 +44,7 @@ while ($row = $explore_query_result->fetch_assoc()) {
     <div class="container-fluid" id="profile-panel">
         <div class="panel panel-default">
             <div class="panel-heading" id="profile-panel-heading">
-                <h3 class="panel-title"><?php echo $movie_genre?></h3>
+                <h3 class="panel-title"><?php echo $movie_genre ?></h3>
 
             </div>
             <div class="panel-body" id="profile-panel-body">
@@ -87,7 +81,6 @@ while ($row = $explore_query_result->fetch_assoc()) {
                                     </div>
                                     ";
                         }
-                        ?>
                         ?>
 
                     </div>

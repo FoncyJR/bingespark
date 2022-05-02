@@ -3,7 +3,7 @@
 // db connection
 include("database/dbconn.php");
 
-$movie_id = htmlentities(urldecode($_GET["movie_id"]));
+$movie_id = htmlentities(urldecode($_GET["filter"]));
 
 // gather data from db
 $explore_query = "SELECT * FROM movie WHERE movie_id = '$movie_id';";
@@ -15,7 +15,7 @@ $explore_query = "SELECT * FROM movie WHERE movie_id = '$movie_id';";
 // INNER JOIN movie_genre ON movie.movie_id
 // INNER JOIN genre ON genre.genre_id
 // INNER JOIN movie_director ON movie.movie_id
-// INNER JOIN director ON director.director_id WHERE movie_id = 1";
+// INNER JOIN director ON director.director_id WHERE movie_id = '$movie_id;";
 
 $explore_query_result = $dbconn->query($explore_query);
 
@@ -27,7 +27,7 @@ if (!$explore_query_result) {
 
 
 while ($row = $explore_query_result->fetch_assoc()) {
-   
+
     $movies[] = $row;
 }
 
@@ -50,7 +50,7 @@ while ($row = $explore_query_result->fetch_assoc()) {
     <div class="container-fluid" id="profile-panel">
         <div class="panel panel-default">
             <div class="panel-heading" id="profile-panel-heading">
-                <h3 class="panel-title">Random Movie</h3>
+                <h3 class="panel-title"><?php $movie_title ?></h3>
 
             </div>
             <div class="panel-body" id="profile-panel-body">
@@ -59,17 +59,29 @@ while ($row = $explore_query_result->fetch_assoc()) {
                         <?php
 
                         foreach ($movies as $row) {
- 
+
                             if (strlen($row["thumbnail"]) > 0) {
                                 $movie_thumbnail = $row["thumbnail"];
-                              } else {
-                                  $movie_thumbnail = 'images/moviePosterPlaceholder.png';
-                              };
+                            } else {
+                                $movie_thumbnail = 'images/moviePosterPlaceholder.png';
+                            };
+
+                            if (strlen($row["movie_desc"]) > 0) {
+                                $movie_description = $row["movie_desc"];
+                            } else {
+                                $movie_description = "No description available at the moment.";
+                            };
+
+                            if (strlen($row["revenue"]) > 0) {
+                                $movie_revenue = $row["revenue"];
+                            } else {
+                                $movie_revenue = "No revenue figures available at the moment.";
+                            };
+
                             $movie_title = $row["title"];
                             $movie_year = $row["release_year"];
-                            $movie_description = $row["movie_desc"];
                             $movie_runtime = $row["runtime"];
-                            $movie_revenue = $row["revenue"];
+
                             // $movie_director = $row["director"];
                             // $movie_actor = $row["actor"];
 
@@ -82,15 +94,15 @@ while ($row = $explore_query_result->fetch_assoc()) {
 
                             <div class='row' id='random-movie'>
                                 <div class='col-xs-12 col-sm-6 col-md-6'>
-                                <img src='$movie_thumbnail' alt='$movie_title poster'>
+                                    <img src='$movie_thumbnail' alt='$movie_title poster' width='500px'>
                                 </div>
                                 <div class='col-xs-12 col-sm-6 col-md-6'>
 
-                                            <p>$movie_description</p>
-                                            <p><b>Runtime:</b> $movie_runtime mins <b>Revenue:</b> <span>&#36;</span>$movie_revenue million</p>
-                                            <p><b>Director:</b> </p>
-                                            <p><b>Actors: </b>
-                                            </div>
+                                    <p><b>Description</b><br><br>$movie_description</p>
+                                    <p><b>Runtime:</b> $movie_runtime mins <b>Revenue:</b> <span>&#36;</span>$movie_revenue million</p>
+                                    <p><b>Director:</b> </p>
+                                    <p><b>Actors: </b>
+                                </div>
                                 </div>
                                 
                             </div>
