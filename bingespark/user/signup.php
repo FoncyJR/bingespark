@@ -30,21 +30,19 @@
 
                                 <div class="mb-3">
                                     <input type="text" class="form-control" name="name" placeholder="Name">
-                                </div>
 
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" name="email" placeholder="Email Address">
-                                </div>
 
-                                <div class="mb-3">
+
+                                    <input type="email" class="form-control" name="email" placeholder="Email Address">
+
+
+
                                     <input type="password" class="form-control" name="password" placeholder="Password">
-                                </div>
 
-                                <div class="mb-3">
+
                                     <input type="password" class="form-control" name="password-repeat" placeholder="Repeat Password">
-                                </div>
 
-                                <div class="mb-3">
+
                                     <button type="submit" class="btn btn-primary" name="submit">Sign Up</button>
                                 </div>
 

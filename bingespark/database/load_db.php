@@ -1,14 +1,14 @@
 <?php
 
 // db connection
-include("./dbconn.php");
+include("dbconn.php");
 
 // declare csv as variable
-$file = fopen("../Movie-DataSet2_final.csv", 'r');
+// $file = fopen("../Movie-DataSet2_final.csv", 'r');
 // $file = fopen("../Movie-1.csv", 'r');
 // $file = fopen("../Movie-2.csv", 'r');
 // $file = fopen("../Movie-3.csv", 'r');
-// $file = fopen("../Movie-4.csv", 'r');
+$file = fopen("../Movie-5.csv", 'r');
 
 // check that file can be found
 if ($file === false) {
@@ -46,7 +46,8 @@ while (($line = fgetcsv($file)) !== false) {
         foreach ($year as $movieyear) {
 
             // OMDB API credentials
-            $endpoint_api = "http://www.omdbapi.com/?apikey=63ee3bba&t=$movie&y=$movieyear";
+            // $endpoint_api = "http://www.omdbapi.com/?apikey=63ee3bba&t=$movie&y=$movieyear";
+            $endpoint_api = "http://www.omdbapi.com/?apikey=90159532&t=$movie&y=$movieyear";
 
             // API data
             $data_api = file_get_contents($endpoint_api);
@@ -85,7 +86,7 @@ while (($line = fgetcsv($file)) !== false) {
             $movie_desc = mysqli_real_escape_string($dbconn, $movie_desc);
 
             // thumbnail - using posters from api
-            $movie_thumbnail = $row["Poster"];
+            $movie_thumb = $movie_api["Poster"];
 
             // tidy and trim data
             $title_trim = trim($title_array);
@@ -99,19 +100,9 @@ while (($line = fgetcsv($file)) !== false) {
             $runtime_array = trim($runtime_array);
             $runtime_array = mysqli_real_escape_string($dbconn, $runtime_array);
 
-            // duplicates
-            $duplicate = "SELECT * FROM bingespark_test WHERE title = '$title'";
-            $checkduplicate = $dbconn->query($duplicate);
-
-            if ($checkduplicate->num_rows > 0) {
-
-                $title = "$title ($year)";
-            }
-
-
             // movie insert statement
-            $movie_sql = "INSERT INTO movie (movie_id, title, release_year, runtime, revenue, movie_desc, thumbnail, review_id) 
-            VALUES (null, '$title_trim', '$year_array', '$runtime_array', '$revenue_array', '$movie_desc', '$movie_thumb', null) ";
+            $movie_sql = "INSERT INTO movie (movie_id, title, release_year, runtime, revenue, movie_desc, thumbnail) 
+            VALUES (null, '$title_trim', '$year_array', '$runtime_array', '$revenue_array', '$movie_desc', '$movie_thumb') ";
             // send insert statement to db
             $movie_insert = $dbconn->query($movie_sql);
             // check error
@@ -274,10 +265,6 @@ while (($line = fgetcsv($file)) !== false) {
     } //foreach movie end
 
 } //while loop end
-
-    // changing date format to fit db MIGHT BE USEFUL FOR USER DOB
-    // $bits = explode('/', $release);
-    // $release = "$bits[2],-$bits[1]-$bits[0]";
     
 // close file
 // fclose($file);

@@ -1,8 +1,5 @@
 <?php
 
-// db connection
-include("../database/dbconn.php");
-
 // genre query
 $genre_query = "SELECT * FROM genre ORDER BY genre.genre";
 

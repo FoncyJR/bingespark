@@ -2,6 +2,7 @@
 
 // db connection
 include("../database/dbconn.php");
+include("explore_filter.php");
 
 if (isset($_POST['search'])) {
     $input_text = $_POST['search'];
@@ -63,7 +64,7 @@ while ($row = $search_query_result->fetch_assoc()) {
                 <div class="row" id="explore-filter">
 
                     <div class="col-xs-12 col-sm-4 col-md-4" id="explore-filter-dropdown">
-                        <form action="../search/explore_filter_result.php" method="POST">
+                        <form action="/explore_filter_result.php" method="POST">
                             <select name="genre">
                                 <option>Genre</option>
                                 <?php
@@ -83,7 +84,7 @@ while ($row = $search_query_result->fetch_assoc()) {
                     </div>
 
                     <div class="col-xs-12 col-sm-4 col-md-4" id="explore-filter-dropdown">
-                        <form action="../search/explore_filter_result.php" method="POST">
+                        <form action="explore_filter_result.php" method="POST">
                             <select name="actor">
                                 <option>Actor</option>
                                 <?php
@@ -103,7 +104,7 @@ while ($row = $search_query_result->fetch_assoc()) {
                     </div>
 
                     <div class="col-xs-12 col-sm-4 col-md-4" id="explore-filter-dropdown">
-                        <form action="../search/explore_filter_result.php" method="POST">
+                        <form action="explore_filter_result.php" method="POST">
                             <select name="director">
                                 <option>Director</option>
                                 <?php

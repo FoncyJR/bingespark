@@ -2,13 +2,15 @@
 
 if (isset($_POST["submit"])) {
 
+    require_once '../database/dbconn.php';
+    require_once '../partials/functions.php';
+    
     $name = $_POST["name"];
-    $email = $POST["email"];
-    $password = $POST["password"];
-    $password_repeat = $POST["password-repeat"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $password_repeat = $_POST["password-repeat"];
 
-    require_once('../database/dbconn.php');
-    require_once('../partials/functions.php');
+
 
     if (emptyInputSignup($name, $email, $password, $password_repeat) != false) {
         header("location: signup.php?error=empty-input");

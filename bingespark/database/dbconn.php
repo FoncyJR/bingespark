@@ -8,7 +8,7 @@
           $user = "root";
           $pw = "root"; //MAMP
           //$pw = ""; //XAMPP
-          $db = "bingespark_test_b";
+          $db = "bingespark_final_test";
 
     // } else {
     //       //remote credentials
