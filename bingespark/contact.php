@@ -19,7 +19,6 @@
     <div class="container py-4">
         <h3>Contact Form</h3>
 
-        <!-- Bootstrap 5 starter form -->
         <form action='contact_submit.php'id="contactForm">
 
             <!-- Name input -->

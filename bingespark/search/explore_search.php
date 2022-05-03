@@ -1,7 +1,7 @@
 <?php
 
 // db connection
-include("database/dbconn.php");
+include("../database/dbconn.php");
 
 if (isset($_POST['search'])) {
     $input_text = $_POST['search'];
@@ -24,6 +24,7 @@ $search_query = "SELECT DISTINCT  movie.movie_id, movie.release_year,
     ON director.director_id = movie_director.director_id
     WHERE actor.actor LIKE '%$input_text%' OR genre.genre LIKE '%$input_text%' OR director.director LIKE '%$input_text%' OR movie.title LIKE '%$input_text%';";
 
+
 $search_query_result = $dbconn->query($search_query);
 
 
@@ -32,7 +33,7 @@ if (!$search_query_result) {
 }
 $movies = array();
 
-while ($row = $explore_query_result->fetch_assoc()) {
+while ($row = $search_query_result->fetch_assoc()) {
     $movies[] = $row;
 }
 
@@ -41,14 +42,14 @@ while ($row = $explore_query_result->fetch_assoc()) {
 <html lang="en">
 
 <head>
-    <?php include('partials/head.php') ?>
+    <?php include('../partials/head_2.php') ?>
     <title>bingespark explore</title>
 </head>
 
 <body>
 
     <!-- Navbar -->
-    <?php include('partials/navbar.php'); ?>
+    <?php include('../partials/navbar_2.php'); ?>
 
     <!--Body-->
     <div class="container-fluid" id="profile-panel">
@@ -62,7 +63,7 @@ while ($row = $explore_query_result->fetch_assoc()) {
                 <div class="row" id="explore-filter">
 
                     <div class="col-xs-12 col-sm-4 col-md-4" id="explore-filter-dropdown">
-                        <form action="search/explore_filter_result.php" method="POST">
+                        <form action="../search/explore_filter_result.php" method="POST">
                             <select name="genre">
                                 <option>Genre</option>
                                 <?php
@@ -82,7 +83,7 @@ while ($row = $explore_query_result->fetch_assoc()) {
                     </div>
 
                     <div class="col-xs-12 col-sm-4 col-md-4" id="explore-filter-dropdown">
-                        <form action="search/explore_filter_result.php" method="POST">
+                        <form action="../search/explore_filter_result.php" method="POST">
                             <select name="actor">
                                 <option>Actor</option>
                                 <?php
@@ -102,7 +103,7 @@ while ($row = $explore_query_result->fetch_assoc()) {
                     </div>
 
                     <div class="col-xs-12 col-sm-4 col-md-4" id="explore-filter-dropdown">
-                        <form action="search/explore_filter_result.php" method="POST">
+                        <form action="../search/explore_filter_result.php" method="POST">
                             <select name="director">
                                 <option>Director</option>
                                 <?php
@@ -133,8 +134,8 @@ while ($row = $explore_query_result->fetch_assoc()) {
     <div class="container-fluid" id="profile-panel">
         <div class="panel panel-default">
             <div class="panel-heading" id="profile-panel-heading">
-                <h4 class="panel-title">Movies</h4>
-                <!---Change to dynamic username?-->
+                <h4 class="panel-title">Search results matching <?php echo" '$input_text' "?></h4>
+
             </div>
             <div class="panel-body" id="profile-panel-body">
                 <div class="row">
@@ -147,7 +148,7 @@ while ($row = $explore_query_result->fetch_assoc()) {
                             if (strlen($row["thumbnail"]) > 0) {
                                 $movie_thumbnail = $row["thumbnail"];
                             } else {
-                                $movie_thumbnail = 'images/moviePosterPlaceholder.png';
+                                $movie_thumbnail = '../images/moviePosterPlaceholder.png';
                             };
                             $movie_title = $row["title"];
                             $movie_year = $row["release_year"];
@@ -160,7 +161,7 @@ while ($row = $explore_query_result->fetch_assoc()) {
                             <div class='row' id='explore-movies'>
 
                             <div class='col-xs-12 col-sm-12 col-md-12'>
-                            <a href='movie.php?filter=$movie_id'><h4>$movie_title($movie_year)</h4></a>
+                            <a href='../movie.php?filter=$movie_id'><h4>$movie_title($movie_year)</h4></a>
                             </div>
 
                             <div class='col-xs-12 col-sm-12 col-md-12' id='explore-poster'> 
@@ -184,11 +185,11 @@ while ($row = $explore_query_result->fetch_assoc()) {
     <!--Full list of all movies in db. 
     Include pagination
     Filters down left hand side - ideally checkbox one
--->>
+-->
 
 
     <!--Footer-->
-    <?php include('partials/footer.php'); ?>
+    <?php include('../partials/footer_2.php'); ?>
 
 </body>
 

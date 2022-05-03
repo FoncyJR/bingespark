@@ -26,25 +26,19 @@
 
                     <div class="row">
                         <div class="col-sm-12 col-md-12 col-lg-12">
-                            <form action="" method="POST">
-                                <div class="row mb-3">
-                                    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-                                    <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="inputEmail3">
-                                    </div>
+
+                            <form action="login_include.php" method="POST">
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" name="email" placeholder="Email Address">
                                 </div>
-                                <div class="row mb-3">
-                                    <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-                                    <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="inputPassword3">
-                                    </div>
+
+                                <div class="mb-3">
+                                    <input type="password" class="form-control" name="password" placeholder="Password">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Log In</button>
 
                             </form>
-                        </div>
-                        <div class="col-sm-12 col-md-12 col-lg-12">
-                           <a href="signup.php"><button type="submit" class="btn btn-primary">Sign Up</button></a>
+
                         </div>
                     </div>
                 </div>

@@ -75,7 +75,7 @@ while ($row = $explore_query_result->fetch_assoc()) {
                             $movie_title = $row["title"];
                             $movie_year = $row["release_year"];
                             $movie_runtime = $row["runtime"];
-                            $movie_director = $row["director"];
+                            // $movie_director = $row["director"];
                             // $movie_actor = $row["actor"];
 
                             echo "
@@ -93,7 +93,7 @@ while ($row = $explore_query_result->fetch_assoc()) {
                                             
                                             <p><b>Description</b><br><br>$movie_description</p>
                                             <p><b>Runtime:</b> $movie_runtime mins <b>Revenue:</b> <span>&#36;</span>$movie_revenue million</p>
-                                            <p><b>Director:</b> $movie_director </p>
+                                            <p><b>Director:</b> </p>
                                             <p><b>Actors: </b>
                                             </div>
                                 </div>

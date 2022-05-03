@@ -35,7 +35,7 @@
                 <li role="separator" class="divider"></li>
                 <li><a href="random.php">Random</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="profile.php">Profile</a></li>
+                <li><a href="user/signup.php">Sign Up</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="user/login.php" id="profile-btn">Log In<span class="sr-only">(current)</span></a></li>

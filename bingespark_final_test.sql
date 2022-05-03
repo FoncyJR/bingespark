@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 02, 2022 at 11:31 AM
+-- Generation Time: May 03, 2022 at 03:42 PM
 -- Server version: 5.7.34
--- PHP Version: 7.4.21
+-- PHP Version: 8.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bingespark_test_a`
+-- Database: `bingespark_final_test`
 --
 
 -- --------------------------------------------------------
@@ -67,8 +67,7 @@ CREATE TABLE `movie` (
   `runtime` int(11) NOT NULL,
   `revenue` decimal(6,2) NOT NULL,
   `movie_desc` text NOT NULL,
-  `thumbnail` text NOT NULL,
-  `review_id` int(11) DEFAULT NULL
+  `thumbnail` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -110,20 +109,43 @@ CREATE TABLE `movie_genre` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `review`
+--
+
+CREATE TABLE `review` (
+  `review_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `movie_id` int(11) NOT NULL,
+  `user_review` text NOT NULL,
+  `user_rating` decimal(6,2) NOT NULL,
+  `favourite` tinyint(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
-  `user_type` varchar(255) NOT NULL,
-  `first_name` varchar(255) NOT NULL,
-  `last_name` varchar(255) NOT NULL,
-  `date_of_birth` date NOT NULL,
+  `user_type_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varbinary(255) NOT NULL,
-  `profile_picture` text NOT NULL,
-  `review_id` int(11) DEFAULT NULL
+  `profile_picture` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_type`
+--
+
+CREATE TABLE `user_type` (
+  `user_type_id` int(11) NOT NULL,
+  `user_type` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -179,10 +201,26 @@ ALTER TABLE `movie_genre`
   ADD KEY `FK_genre_genre_id_movie_genre` (`genre_id`);
 
 --
+-- Indexes for table `review`
+--
+ALTER TABLE `review`
+  ADD PRIMARY KEY (`review_id`),
+  ADD KEY `FK_user_user_id_review` (`user_id`),
+  ADD KEY `FK_movie_movie_id_review` (`movie_id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `FK_user_type_user_type_id_user` (`user_type_id`);
+
+--
+-- Indexes for table `user_type`
+--
+ALTER TABLE `user_type`
+  ADD PRIMARY KEY (`user_type_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -237,6 +275,12 @@ ALTER TABLE `user`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `user_type`
+--
+ALTER TABLE `user_type`
+  MODIFY `user_type_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -260,6 +304,19 @@ ALTER TABLE `movie_director`
 ALTER TABLE `movie_genre`
   ADD CONSTRAINT `FK_genre_genre_id_movie_genre` FOREIGN KEY (`genre_id`) REFERENCES `genre` (`genre_id`),
   ADD CONSTRAINT `FK_movie_movie_id_movie_genre` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`movie_id`);
+
+--
+-- Constraints for table `review`
+--
+ALTER TABLE `review`
+  ADD CONSTRAINT `FK_movie_movie_id_review` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`movie_id`),
+  ADD CONSTRAINT `FK_user_user_id_review` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+
+--
+-- Constraints for table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `FK_user_type_user_type_id_user` FOREIGN KEY (`user_type_id`) REFERENCES `user_type` (`user_type_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

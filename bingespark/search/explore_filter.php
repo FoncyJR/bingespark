@@ -1,7 +1,7 @@
 <?php
 
 // db connection
-include("database/dbconn.php");
+include("../database/dbconn.php");
 
 // genre query
 $genre_query = "SELECT * FROM genre ORDER BY genre.genre";
@@ -18,7 +18,7 @@ while ($row = $genre_query_result->fetch_assoc()) {
 }
 
 foreach($genres as $row){
-    $genre = $genres["genre"];
+    $genre = $row["genre"];
 }
 
 // actor query
@@ -36,7 +36,7 @@ while ($row = $actor_query_result->fetch_assoc()) {
 }
 
 foreach($actors as $row){
-    $actor = $actors["actor"];
+    $actor = $row["actor"];
 }
 
 // director query
@@ -54,7 +54,7 @@ while ($row = $director_query_result->fetch_assoc()) {
 }
 
 foreach($directors as $row){
-    $director = $directors["director"];
+    $director = $row["director"];
 }
 
 ?>
