@@ -151,6 +151,13 @@ while ($row = $search_query_result->fetch_assoc()) {
                             } else {
                                 $movie_thumbnail = '../images/moviePosterPlaceholder.png';
                             };
+
+                            if (strlen($row["movie_desc"]) > 0) {
+                                $movie_description = $row["movie_desc"];
+                            } else {
+                                $movie_description = "No description available at the moment.";
+                            };
+                            
                             $movie_title = $row["title"];
                             $movie_year = $row["release_year"];
                             $movie_id = $row["movie_id"];

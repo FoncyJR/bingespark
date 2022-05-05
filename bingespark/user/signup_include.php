@@ -2,9 +2,9 @@
 
 if (isset($_POST["submit"])) {
 
-    require_once '../database/dbconn.php';
-    require_once '../partials/functions.php';
-    
+    include('../database/dbconn.php');
+    require('../partials/functions.php');
+
     $name = $_POST["name"];
     $email = $_POST["email"];
     $password = $_POST["password"];
@@ -27,14 +27,14 @@ if (isset($_POST["submit"])) {
         exit();
     }
 
-    if (emailExists($dbconn, $email) !== false){
+    if (emailExists($dbconn, $email) !== false) {
         header("location: signup.php?error=email-taken");
         exit();
     }
 
     createUser($dbconn, $name, $email, $password);
 
-
+    header("profile.php");
 } else {
     header("location: signup.php");
     exit();

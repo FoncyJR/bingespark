@@ -1,5 +1,8 @@
 <?php
 
+include("../database/dbconn.php");
+
+// ----------- Sign Up Functions ----------- //
 function emptyInputSignup($name, $email, $password, $password_repeat)
 {
     if (empty($name) || empty($email) || empty($password) || empty($password_repeat)) {
@@ -60,20 +63,53 @@ function emailExists($dbconn, $email)
 
 function createUser($dbconn, $name, $email, $password)
 {
+    // // Prepared statements not working - revisit
+    // $sql = $dbconn->prepare("INSERT INTO `user` (`user_id`,`user_type_id`,`name`, `email`, `username`,`password`,`profile_picture`) 
+    //                 VALUES (?, ?, ?, ?, ?, ?, ?);");
 
-    $sql = "INSERT INTO `user` (`name`, `email`, `password`) VALUES (?, ?, ?);";
-    $statement = mysqli_stmt_init($dbconn);
+    // $usertype = 2;
+    // $null = NULL;
+    // $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-    if (!mysqli_stmt_prepare($statement, $sql)) {
-        header("location: signup.php?error=stmt-failed");
-        exit();
-    }
+    // $sql->bind_param("iissssb", $null, $usertype, $name, $email, $email, $password_hash, $null);
+    // $sql->execute();
+    // $sql->close();
 
+    // // prepared statement attempt 2
+    // $statement = "INSERT INTO `user` (`user_id`,`user_type_id`,`name`, `email`, `username`,`password`,`profile_picture`) 
+    //                  VALUES (?, ?, ?, ?, ?, ?, ?);";
+
+    // $insert = mysqli_stmt_init($dbconn);
+
+    // if (!mysqli_stmt_prepare($insert, $statement)) {
+    //     header("location: ../user/signup.php?error=stmtfailed");
+    //     exit();
+    // }
+
+    // $password_hash = password_hash($password, PASSWORD_DEFAULT);
+    // $usertype = 2;
+    // $null = NULL;
+
+    // mysqli_stmt_bind_param($insert ,"iissssb", $null, $usertype, $name, $email, $email, $password_hash, $null);
+    // mysqli_stmt_execute($insert);
+    // mysqli_stmt_close($insert);
+
+
+    $usertype = 2;
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-    mysqli_stmt_bind_param($statement, "sss", $name, $email, $password_hash);
-    mysqli_stmt_execute($statement);
-    mysqli_stmt_close($statement);
+    $name = mysqli_escape_string($dbconn, $name);
+    $email = mysqli_escape_string($dbconn, $email);
+    $password_hash = mysqli_escape_string($dbconn, $password_hash);
+
+    $userinsert = "INSERT INTO `user` (`user_id`,`user_type_id`,`name`, `email`, `username`,`password`,`profile_picture`) VALUES (NULL, $usertype, '$name', '$email', '$email', '$password_hash', NULL);";
+
+    $dbinsert   = $dbconn->query($userinsert);
+
+    if (!$dbinsert) {
+        echo $dbconn->error;
+        exit();
+    }
 
     header("location: signup.php?error=none");
     exit();

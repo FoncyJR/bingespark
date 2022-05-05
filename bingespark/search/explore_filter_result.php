@@ -19,7 +19,7 @@ if (isset($_POST['director-filter'])) {
     $director = $_POST['director-filter'];
 }
 
-// ifelse checks if one of the filters has been used and changes the query accordingly
+// checks if one of the filters has been used and changes the query accordingly
 if (isset($genre)) {
     $filter_query = "SELECT DISTINCT  movie.movie_id, movie.release_year,
     movie.title, movie.runtime, movie.thumbnail, movie.movie_desc
@@ -59,7 +59,8 @@ if (!$filter_query_result) {
 $filter_result = array();
 
 while ($row = $filter_query_result->fetch_assoc()) {
-    $filter_result[] = $row;
+    // $filter_result[] = $row;
+    array_push($filter_result, $row);
 }
 
 ?>
