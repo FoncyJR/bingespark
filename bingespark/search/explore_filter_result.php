@@ -34,20 +34,20 @@ if (isset($actor)) {
     $filter_query = "SELECT DISTINCT  movie.movie_id, movie.release_year,
     movie.title, movie.runtime, movie.thumbnail, movie.movie_desc
     FROM movie
-    INNER JOIN  movie_genre
-    ON movie.movie_id=movie_genre.movie_id
-    INNER JOIN genre
-    ON genre.genre_id=movie_genre.genre_id
+    INNER JOIN  movie_actor
+    ON movie.movie_id=movie_actor.movie_id
+    INNER JOIN actor
+    ON actor.actor_id=movie_actor.actor_id
     WHERE actor.actor = '$actor';";
 } 
 if (isset($director)) {
     $filter_query = "SELECT DISTINCT  movie.movie_id, movie.release_year,
     movie.title, movie.runtime, movie.thumbnail, movie.movie_desc
     FROM movie
-    INNER JOIN  movie_genre
-    ON movie.movie_id=movie_genre.movie_id
-    INNER JOIN genre
-    ON genre.genre_id=movie_genre.genre_id
+    INNER JOIN  movie_director
+    ON movie.movie_id=movie_director.movie_id
+    INNER JOIN director
+    ON director.director_id=movie_director.director_id
     WHERE director.director = '$director';";
 }
 
@@ -59,8 +59,8 @@ if (!$filter_query_result) {
 $filter_result = array();
 
 while ($row = $filter_query_result->fetch_assoc()) {
-    // $filter_result[] = $row;
-    array_push($filter_result, $row);
+    $filter_result[] = $row;
+    //array_push($filter_result, $row);
 }
 
 ?>
@@ -69,14 +69,14 @@ while ($row = $filter_query_result->fetch_assoc()) {
 <html lang="en">
 
 <head>
-    <?php include('partials/head.php') ?>
+    <?php include('../partials/head_2.php') ?>
     <title>bingespark explore</title>
 </head>
 
 <body>
 
     <!-- Navbar -->
-    <?php include('partials/navbar.php'); ?>
+    <?php include('../partials/navbar_2.php'); ?>
 
     <!--Body-->
     <div class="container-fluid" id="profile-panel">
@@ -215,7 +215,7 @@ while ($row = $filter_query_result->fetch_assoc()) {
 
 
     <!--Footer-->
-    <?php include('partials/footer.php'); ?>
+    <?php include('../partials/footer_2.php'); ?>
 
 </body>
 

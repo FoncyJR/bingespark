@@ -8,6 +8,7 @@ include("dbconn.php");
 // $file = fopen("../Movie-1.csv", 'r');
 // $file = fopen("../Movie-2.csv", 'r');
 // $file = fopen("../Movie-3.csv", 'r');
+$file = fopen("../Movie-4.csv", 'r');
 $file = fopen("../Movie-5.csv", 'r');
 
 // check that file can be found
@@ -75,6 +76,7 @@ while (($line = fgetcsv($file)) !== false) {
 
             // revenue
             if (empty($revenue_array)) {
+     
                 $revenue_api = $movie_api["BoxOffice"];
                 // $revenue_array = floatval(preg_replace("/[^-0-9\.]/", "", $revenue_api));
                 $revenue_array = ($revenue_array / 1000000);

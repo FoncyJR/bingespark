@@ -61,6 +61,30 @@ function emailExists($dbconn, $email)
     mysqli_stmt_close($statement);
 }
 
+function userExists($dbconn, $username, $email)
+{
+    // check user exists
+    $check_user = "SELECT * FROM user WHERE username = ? OR email = ?";
+    $statement = mysqli_stmt_init($dbconn);
+    if (!mysqli_stmt_prepare($statement, $check_user)) {
+        header("location: signup.php?error=user-exists");
+        exit();
+    }
+    mysqli_stmt_bind_param($statement, "ss", $username, $email);
+    mysqli_stmt_execute($statement);
+
+    $result_data = mysqli_stmt_get_result($statement);
+
+    if ($row = mysqli_fetch_assoc($result_data)) {
+        return $row;
+    } else {
+        $result = false;
+        return $result;
+    }
+
+    mysqli_stmt_close($statement);
+}
+
 function createUser($dbconn, $name, $email, $password)
 {
     // // Prepared statements not working - revisit
@@ -113,4 +137,39 @@ function createUser($dbconn, $name, $email, $password)
 
     header("location: signup.php?error=none");
     exit();
+}
+
+
+// ----------- Log In Functions ----------- //
+function emptyInputLogin($username, $pwd)
+{
+    if (empty($username) || empty($pwd)) {
+        $result = true;
+    } else {
+        $result = false;
+    }
+
+    return $result;
+}
+
+function loginUser($dbconn, $username, $pwd)
+{
+
+    $userExists = userExists($dbconn, $username, $username);
+
+    if ($userExists() === false) {
+        header("location: login.php?error=incorrect-login");
+        exit();
+    }
+
+    $password_hash = $userExists['password'];
+    $password_check = password_verify($pwd, $password_hash);
+
+    if ($password_check === false) {
+        header("location: login.php?error=incorrect-login");
+        exit();
+    } else if ($password_check === false) {
+        session_start();
+        
+    }
 }

@@ -30,30 +30,53 @@
 
                                 <div class="mb-3">
                                     <input type="text" class="form-control" name="name" placeholder="Name">
-
-
-
                                     <input type="email" class="form-control" name="email" placeholder="Email Address">
-
-
-
                                     <input type="password" class="form-control" name="password" placeholder="Password">
-
-
                                     <input type="password" class="form-control" name="password-repeat" placeholder="Repeat Password">
-
-
                                     <button type="submit" class="btn btn-primary" name="submit">Sign Up</button>
                                 </div>
 
 
                             </form>
                         </div>
-                    </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <?php
 
+                                // sign up error and success messages
+                                if (isset($_GET["error"])) {
+
+                                    if ($_GET["error"] == "empy-input") {
+
+                                        echo "<p>Uh oh, fill all fields!</p>";
+                                    } else if (isset($_GET["error"]) == "invalid-email") {
+
+                                        echo "<p>Please enter a valid email address.</p>";
+                                    } else if (isset($_GET["error"]) == "passwords-dont-match") {
+
+                                        echo "<p>Passwords don't match.</p>";
+                                    } else if (isset($_GET["error"]) == "email-taken") {
+
+                                        echo "<p>Sorry, this email is in use. Please try another..</p>";
+                                    } else if (isset($_GET["error"]) == "none") {
+
+                                        echo "<p>Welcome to BingeSpark!";
+                                        sleep(1);
+                                        header("location: profile.php");
+                                    } else{
+                                        echo "<p> Error. Please try again later.</p>";
+                                    }
+                                }
+
+                                ?>
+                            </div>
+
+
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div>
 
 
 
@@ -62,8 +85,8 @@
 
 
 
-        <!--Footer-->
-        <?php include('../partials/footer_2.php'); ?>
+            <!--Footer-->
+            <?php include('../partials/footer_2.php'); ?>
 
 </body>
 
