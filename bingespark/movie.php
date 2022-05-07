@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 // db connection
 include("database/dbconn.php");
 
@@ -50,7 +52,10 @@ while ($row = $explore_query_result->fetch_assoc()) {
     <div class="container-fluid" id="profile-panel">
         <div class="panel panel-default">
             <div class="panel-heading" id="profile-panel-heading">
-                <h3 class="panel-title"><?php $movie_title ?></h3>
+                <h3 class="panel-title"><?php foreach ($movies as $row) {
+                                            $movie_title = $row["title"];
+                                        }
+                                        $movie_title ?></h3>
 
             </div>
             <div class="panel-body" id="profile-panel-body">
@@ -103,21 +108,45 @@ while ($row = $explore_query_result->fetch_assoc()) {
                                     <p><b>Director:</b> </p>
                                     <p><b>Actors: </b>
                                 </div>
-                                </div>
-                                
-                            </div>
-                            ";
+                                ";
                         }
                         ?>
+                        <?php
+                        if (isset($_SESSION["user_id"])) {
+                            echo "
+                            <div class='col-xs-12 col-sm-6 col-md-6'>
+                                    <div class='container-fluid' id='profile-panel'>
+                                        <div class='panel panel-default'>
+                                            <div class='panel-heading' id='profile-panel-heading-review'>
+                                                <h3 class='panel-title'>Leave a Review! </h3>
+                                            </div>
+                                            <div class='panel-body' id='profile-panel-body'>
+        
+                                                <div class='row'>
+                                                         <div class='col-xs-6 col-sm-4 col-md-4'>
+        
+                                                         </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                                    ";
+                        }
 
+
+
+                        ?>
                     </div>
-
                 </div>
-
             </div>
 
-            <!--Footer-->
-            <?php include('partials/footer.php'); ?>
+        </div>
+
+    </div>
+
+    <!--Footer-->
+    <?php include('partials/footer.php'); ?>
 
 </body>
 

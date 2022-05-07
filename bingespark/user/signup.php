@@ -1,4 +1,5 @@
 <?php
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,18 +30,23 @@
                             <form action="signup_include.php" method="POST">
 
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" name="name" placeholder="Name">
-                                    <input type="email" class="form-control" name="email" placeholder="Email Address">
-                                    <input type="password" class="form-control" name="password" placeholder="Password">
-                                    <input type="password" class="form-control" name="password-repeat" placeholder="Repeat Password">
-                                    <button type="submit" class="btn btn-primary" name="submit">Sign Up</button>
+                                    <div class="panel-body" id="profile-panel-body">
+                                        <input type="text" class="form-control" name="name" placeholder="Name">
+                                    </div>
+                                    <div class="panel-body" id="profile-panel-body">
+                                        <input type="email" class="form-control" name="email" placeholder="Email Address">
+                                    </div>
+                                    <div class="panel-body" id="profile-panel-body">
+                                        <input type="password" class="form-control" name="password" placeholder="Password">
+                                    </div>
+                                    <div class="panel-body" id="profile-panel-body">
+                                        <input type="password" class="form-control" name="password-repeat" placeholder="Repeat Password">
+                                    </div>
+                                    <div class="panel-body" id="profile-panel-body">
+                                        <button type="submit" class="btn btn-primary" name="submit">Sign Up</button>
+                                    </div>
                                 </div>
 
-
-                            </form>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12 col-md-12 col-lg-12">
                                 <?php
 
                                 // sign up error and success messages
@@ -63,17 +69,14 @@
                                         echo "<p>Welcome to BingeSpark!";
                                         sleep(1);
                                         header("location: profile.php");
-                                    } else{
+                                    } else {
                                         echo "<p> Error. Please try again later.</p>";
                                     }
                                 }
 
                                 ?>
-                            </div>
-
-
+                            </form>
                         </div>
-
                     </div>
                 </div>
             </div>

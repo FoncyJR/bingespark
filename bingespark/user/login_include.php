@@ -1,26 +1,25 @@
 <?php
 
-if(isset($_POST["submit"])){
+include("../database/dbconn.php");
+require("../partials/functions.php");
 
-    $username=$_POST["email"];
-    $username=$_POST["password"];
+if (isset($_POST["submit"])) {
 
-    include("../database/dbconn.php");
-    include("../partials/functions.php");
 
-    if (emptyInputLogin($username,$pwd) != false) {
+
+    $username = $_POST["email"];
+    $pwd = $_POST["password"];
+
+
+    if (emptyInputLogin($username, $pwd) === true) {
         header("location: login.php?error=empty-input");
         exit();
     }
 
 
     loginUser($dbconn, $username, $pwd);
+} else {
 
-}else{
-
-    header("location: ..login.php");
+    header("location: login.php?error=login-failed");
     exit();
-
 }
-
-?>

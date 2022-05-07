@@ -1,4 +1,5 @@
 <?php
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +15,18 @@
 
     <!--Body-->
     <div class="container-fluid" id="main-body">
+        <?php
+        if (isset($_SESSION["user_id"])) {
+
+            echo "
+        <div class='panel panel-default'>
+            <div class='panel-heading' id='profile-panel-heading-signedin'>
+                <h3 class='panel-title'>Hello " .$_SESSION["name"]."</h3>
+            </div>
+        </div>
+        ";
+        }
+        ?>
         <!--Carousel-->
         <div class="container-fluid" id="profile-panel">
             <div class="panel panel-default">
@@ -79,7 +92,7 @@
             </div>
         </div>
     </div>
-  
+
     <!--More Body-->
     <div class="container pt-4">
         <!---padding top 4 needed atm remove from html and add to css-->

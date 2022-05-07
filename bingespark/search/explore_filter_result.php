@@ -7,42 +7,42 @@ include("../database/dbconn.php");
 include("explore_filter.php");
 
 // setting variables from dropdown for filter
-if (isset($_POST['genre-filter'])) {
-    $genre = $_POST['genre-filter'];
+if (isset($_POST["genre-filter"])) {
+    $genre = $_POST["genre-filter"];
 }
 
-if (isset($_POST['actor-filter'])) {
-    $actor = $_POST['actor-filter'];
+if (isset($_POST["actor-filter"])) {
+    $actor = $_POST["actor-filter"];
 }
 
-if (isset($_POST['director-filter'])) {
-    $director = $_POST['director-filter'];
+if (isset($_POST["director-filter"])) {
+    $director = $_POST["director-filter"];
 }
 
 // checks if one of the filters has been used and changes the query accordingly
 if (isset($genre)) {
     $filter_query = "SELECT DISTINCT  movie.movie_id, movie.release_year,
-    movie.title, movie.runtime, movie.thumbnail, movie.movie_desc
+    movie.title, movie.runtime, movie.thumbnail, movie.movie_desc, genre.genre
     FROM movie
     INNER JOIN  movie_genre
     ON movie.movie_id=movie_genre.movie_id
     INNER JOIN genre
     ON genre.genre_id=movie_genre.genre_id
     WHERE genre.genre = '$genre';";
-} 
+}
 if (isset($actor)) {
     $filter_query = "SELECT DISTINCT  movie.movie_id, movie.release_year,
-    movie.title, movie.runtime, movie.thumbnail, movie.movie_desc
+    movie.title, movie.runtime, movie.thumbnail, movie.movie_desc, actor.actor
     FROM movie
     INNER JOIN  movie_actor
     ON movie.movie_id=movie_actor.movie_id
     INNER JOIN actor
     ON actor.actor_id=movie_actor.actor_id
     WHERE actor.actor = '$actor';";
-} 
+}
 if (isset($director)) {
     $filter_query = "SELECT DISTINCT  movie.movie_id, movie.release_year,
-    movie.title, movie.runtime, movie.thumbnail, movie.movie_desc
+    movie.title, movie.runtime, movie.thumbnail, movie.movie_desc, director.director
     FROM movie
     INNER JOIN  movie_director
     ON movie.movie_id=movie_director.movie_id
@@ -90,7 +90,7 @@ while ($row = $filter_query_result->fetch_assoc()) {
                 <div class="row" id="explore-filter">
 
                     <div class="col-xs-12 col-sm-4 col-md-4" id="explore-filter-dropdown">
-                        <form action="search/explore_filter_result.php" method="POST">
+                        <form action="explore_filter_result.php" method="POST">
                             <select name="genre">
                                 <option>Genre</option>
                                 <?php
@@ -110,7 +110,7 @@ while ($row = $filter_query_result->fetch_assoc()) {
                     </div>
 
                     <div class="col-xs-12 col-sm-4 col-md-4" id="explore-filter-dropdown">
-                        <form action="search/explore_filter_result.php" method="POST">
+                        <form action="explore_filter_result.php" method="POST">
                             <select name="actor">
                                 <option>Actor</option>
                                 <?php
@@ -130,7 +130,7 @@ while ($row = $filter_query_result->fetch_assoc()) {
                     </div>
 
                     <div class="col-xs-12 col-sm-4 col-md-4" id="explore-filter-dropdown">
-                        <form action="search/explore_filter_result.php" method="POST">
+                        <form action="explore_filter_result.php" method="POST">
                             <select name="director">
                                 <option>Director</option>
                                 <?php
@@ -170,15 +170,16 @@ while ($row = $filter_query_result->fetch_assoc()) {
 
                         foreach ($filter_result as $row) {
 
+                            $movie_title_filter = $row["title"];
+                            $movie_year_filter = $row["release_year"];
+                            $movie_id_filter = $row["movie_id"];
 
                             if (strlen($row["thumbnail"]) > 0) {
                                 $movie_thumbnail_filter = $row["thumbnail"];
                             } else {
-                                $movie_thumbnail_filter = 'images/moviePosterPlaceholder.png';
+                                $movie_thumbnail_filter = '../images/moviePosterPlaceholder.png';
                             };
-                            $movie_title_filter = $row["title"];
-                            $movie_year_filter = $row["release_year"];
-                            $movie_id_filter = $row["movie_id"];
+
 
 
 
@@ -187,7 +188,7 @@ while ($row = $filter_query_result->fetch_assoc()) {
                             <div class='row' id='explore-movies'>
 
                             <div class='col-xs-12 col-sm-12 col-md-12'>
-                            <a href='movie.php?filter=$movie_id_filter><h4>$movie_title_filter($movie_year_filter)</h4></a>
+                            <a href='../movie.php?filter=$movie_id_filter'><h4>$movie_title_filter($movie_year_filter)</h4></a>
                             </div>
 
                             <div class='col-xs-12 col-sm-12 col-md-12' id='explore-poster'> 
@@ -211,7 +212,7 @@ while ($row = $filter_query_result->fetch_assoc()) {
     <!--Full list of all movies in db. 
     Include pagination
     Filters down left hand side - ideally checkbox one
--->>
+-->
 
 
     <!--Footer-->

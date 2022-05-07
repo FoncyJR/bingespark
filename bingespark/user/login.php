@@ -1,4 +1,5 @@
 <?php
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,16 +29,37 @@
                         <div class="col-sm-12 col-md-12 col-lg-12">
 
                             <form action="login_include.php" method="POST">
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" name="email" placeholder="Email Address">
+                                <div class="panel-body" id="profile-panel-body">
+                                    <input type="text" class="form-control" name="email" placeholder="Email Address/Username">
                                 </div>
-
-                                <div class="mb-3">
+                                <div class="panel-body" id="profile-panel-body">
                                     <input type="password" class="form-control" name="password" placeholder="Password">
                                 </div>
-                                <button type="submit" class="btn btn-primary" id="log-in">Log In</button>
+                                <div class="panel-body" id="profile-panel-body">
+                                    <button type="submit" class="btn btn-primary" name="submit" id="log-in">Log In</button>
+                                </div>
 
                             </form>
+                            <?php
+
+                            // sign up error and success messages
+                            if (isset($_GET["error"])) {
+
+                                if ($_GET["error"] == "empy-input") {
+
+                                    echo "<p>Uh oh, fill all fields!</p>";
+                                } else if (isset($_GET["error"]) == "invalid-email") {
+
+                                    echo "<p>Incorrect login. Please try again.</p>";
+                                } else if (isset($_GET["error"]) == "incorrect-login") {
+
+                                    echo "<p>Passwords don't match.</p>";
+                                } else {
+                                    echo "<p> Error. Please try again later.</p>";
+                                }
+                            }
+
+                            ?>
 
                         </div>
                     </div>

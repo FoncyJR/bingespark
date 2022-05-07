@@ -103,10 +103,9 @@ if (isset($_POST['submitform'])) {
                         <nav id="profile-pills">
                             <ul class="nav nav-pills nav-stacked" id="pills-stacked">
                                 <!-- Make active pill #FF4000-->
-
-                                <li role="presentation"><a href="#">Favourites</a></li>
-                                <li role="presentation"><a href="#">Reviews</a></li>
-                                <li role="presentation" class="active"><a href="#">Settings</a></li>
+                                <li role="presentation" class="active"><a href="#">Movies List</a></li>
+                                <li role="presentation"><a href="#">User Admin</a></li>
+                                <li role="presentation"><a href="#">Settings</a></li>
                             </ul>
                         </nav>
                     </div>
