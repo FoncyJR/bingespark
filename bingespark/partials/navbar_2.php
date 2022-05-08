@@ -1,7 +1,9 @@
-<?php 
-session_start();
-include("functions.php");
-include("../database/dbconn.php"); ?>
+<?php
+// session_start();
+include_once("functions.php");
+include("../database/dbconn.php");
+
+?>
 <nav class="navbar navbar-default" id="navbar">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -40,43 +42,36 @@ include("../database/dbconn.php"); ?>
                 <li><a href="../random.php">Random</a></li>
                 <li role="separator" class="divider"></li>
                 <?php
+
                 if (isset($_SESSION["user_id"])) {
 
-                    $username = $_SESSION["username"];
-                    $email = $_SESSION["email"];
-                    $userExists = userExists($dbconn, $username, $email);
+                    // echo "
+                    // <li><a href='../user/logout_include.php'>Log Out</a></li>
+                    // </ul>
+                    // <ul class='nav navbar-nav navbar-right'>
+                    //     <li class='active'><a href='../admin/admin_profile.php' id='profile-btn'>Admin<span class='sr-only'>(current)</span></a></li>
 
-                    $_SESSION["email"] = $userExists["username"];
-                    $_SESSION["user_type_id"] = $userExists["user_type_id"];
+                    // ";
 
-                    if (isset($_SESSION["user_type_id"]) === 1) {
-                        echo "
-                        <li><a href='../user/logout_include.php'>Log Out</a></li>
-                        </ul>
-                        <ul class='nav navbar-nav navbar-right'>
-                            <li class='active'><a href='../admin/adminprofile.php' id='profile-btn'>Admin<span class='sr-only'>(current)</span></a></li>
-            
-                        ";
-                    } else {
-                        echo "
+                    echo "
                         <li><a href='../user/logout_include.php'>Log Out</a></li>
                         </ul>
                         <ul class='nav navbar-nav navbar-right'>
                             <li class='active'><a href='../user/profile.php' id='profile-btn'>Profile<span class='sr-only'>(current)</span></a></li>
-            
+
                         ";
-                    }
                 } else {
                     echo "
-                        <li><a href='user/signup.php'>Sign Up</a></li>
+                        <li><a href='../user/signup.php'>Sign Up</a></li>
                         </ul>
                         <ul class='nav navbar-nav navbar-right'>
                         <li class='active'><a href='../user/login.php' id='profile-btn'>Log In<span class='sr-only'>(current)</span></a></li>
 
-                        </ul>";
-                }
+                        ";
+                                }
 
                 ?>
+            </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>

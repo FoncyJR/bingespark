@@ -4,19 +4,13 @@ session_start();
 include_once("../partials/functions.php");
 
 //change username
-if (isset($_POST["username-submit"])) {
-    $user_id = $_SESSION["user_id"];
-    $new_username = $_POST["change-username"];
-    changeUsername($dbconn, $user_id, $new_username);
+if (isset($_SESSION["change-username"])) {
+    changeUsername($dbconn);
     header("profile.php?error-none-username-changed");
 }
 
 //change password
-if (isset($_POST["password-submit"])) {
-    $user_id = $_SESSION["user_id"];
-    $new_password = $_POST["change-password"];
-    changePassword($dbconn, $user_id, $new_password);
-    header("profile.php?error-none-password-changed");
+if (isset($_SESSION["change-password"])) {
 }
 
 //delete account
@@ -105,14 +99,14 @@ if (isset($_POST['submitform'])) {
                     <div class="col-xs-12 col-sm-4 col-md-4">
                         <div class="panel-heading" id="profile-panel-options">
                         </div>
-
+                       
                         <nav id="profile-pills">
                             <ul class="nav nav-pills nav-stacked" id="pills-stacked">
                                 <!-- Make active pill #FF4000-->
 
-                                <li role="presentation"><a href="profile_favourites.php">Favourites</a></li>
-                                <li role="presentation"><a href="profile_review.php">Reviews</a></li>
-                                <li role="presentation" class="active"><a href="profile.php">Settings</a></li>
+                                <li role="presentation" class="active"><a href="profile_favourites.php">Favourites</a></li>
+                                <li role="presentation" ><a href="profile_review.php">Reviews</a></li>
+                                <li role="presentation" ><a href="profile.php">Settings</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -134,13 +128,13 @@ if (isset($_POST['submitform'])) {
                                         <div class="panel-body" id="profile-panel-body">
                                             <label for="formFile" class="form-label">Change Username</label>
                                             <input type="text" name="change-username" />
-                                            <button type="button" class="btn btn-primary" name="username-submit">Go</button>
+                                            <button type="button" class="btn btn-primary">Go</button>
                                         </div>
 
                                         <div class="panel-body" id="profile-panel-body">
                                             <label for="formFile" class="form-label">Change Password</label>
                                             <input type="text" name="change-password" />
-                                            <button type="button" class="btn btn-primary" name="password-submit">Go</button>
+                                            <button type="button" class="btn btn-primary">Go</button>
                                         </div>
 
                                         <div class="panel-body" id="profile-panel-body">
@@ -151,33 +145,11 @@ if (isset($_POST['submitform'])) {
                                         </div>
                                     </form>
 
-
-                                    <!--Delete Account-->
-
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        Delete Account
-                                    </button>
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    ...
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <form action="action=" <?php echo $_SERVER['PHP_SELF']; ?> method="POST" name="form">
-                                                        <div class="panel-body" id="profile-panel-body">
-                                                            <div><input type="submit" name="submitform" value="Delete Account" /></div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
+                                    <form action="action=" <?php echo $_SERVER['PHP_SELF']; ?> method="POST" name="form">
+                                        <div class="panel-body" id="profile-panel-body">
+                                            <div><input type="submit" name="submitform" value="Delete Account" /></div>
                                         </div>
-                                    </div>
+                                    </form>
                         </ul>
                     </div>
                 </div>

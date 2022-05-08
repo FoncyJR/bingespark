@@ -67,7 +67,6 @@ session_start();
                                     } else if (isset($_GET["error"]) == "none") {
 
                                         echo "<p>Welcome to BingeSpark!";
-                                        sleep(1);
                                         header("location: profile.php");
                                     } else {
                                         echo "<p> Error. Please try again later.</p>";

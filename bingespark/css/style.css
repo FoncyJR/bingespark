@@ -54,6 +54,14 @@ a:hover {
   color: #feefdd;
 }
 
+
+/*Index*/
+
+#index-carousel > img{
+display: flex;
+justify-content: center;
+overflow: hidden;
+}
 /*Main body*/
 
 body {
@@ -121,6 +129,16 @@ body {
   color: #feefdd;
 }
 
+#nav-link .active{
+  background-color: #ff4000;
+  color: #feefdd;
+
+}
+
+#nav-link{
+  background-color: #feefdd;
+  color: #201e1f;
+}
 /*------------------------------------Media Queries-----------------------------------*/
 
 /* 768px and up */
