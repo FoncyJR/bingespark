@@ -34,6 +34,50 @@ while ($row = $explore_query_result->fetch_assoc()) {
     $movies[] = $row;
 }
 
+//Directors array
+$explore_query_director = "SELECT * FROM director
+                INNER JOIN movie_director
+                ON director.director_id = movie_director.director_id
+                INNER JOIN movie
+                ON movie.movie_id = movie_director.movie_id
+                WHERE movie.movie_id = '$movie_id';";
+
+$explore_query_result_director = $dbconn->query($explore_query_director);
+
+$directors = array();
+
+if (!$explore_query_result_director) {
+    echo $dbconn->query($explore_query_director);
+}
+
+
+while ($row = $explore_query_result_director->fetch_assoc()) {
+
+    $directors[] = $row;
+}
+
+//Movies array
+$explore_query_actor = "SELECT * FROM actor
+                        INNER JOIN movie_actor
+                        ON actor.actor_id = movie_actor.actor_id
+                        INNER JOIN movie
+                        ON movie.movie_id = movie_actor.movie_id
+                        WHERE movie.movie_id = '$movie_id';";
+
+$explore_query_result_actor = $dbconn->query($explore_query_actor);
+
+$actors = array();
+
+if (!$explore_query_result_actor) {
+    echo $dbconn->query($explore_query_actor);
+}
+
+
+while ($row = $explore_query_result_actor->fetch_assoc()) {
+
+    $actors[] = $row;
+}
+
 
 //REVIEW data
 
@@ -183,7 +227,7 @@ if (mysqli_num_rows($reviews_result) < 1) {
                             $movie_year = $row["release_year"];
                             $movie_runtime = $row["runtime"];
 
-                            // $movie_director = $row["director"];
+                            // 
                             // $movie_actor = $row["actor"];
 
                             echo "
@@ -191,13 +235,30 @@ if (mysqli_num_rows($reviews_result) < 1) {
 
                                     <p><b>Description</b><br><br>$movie_description</p>
                                     <p><b>Runtime:</b> $movie_runtime mins <b>Revenue:</b> <span>&#36;</span>$movie_revenue million</p>
-                                    <p><b>Director:</b> </p>
-                                    <p><b>Actors: </b>
-                                </div>
+                        
+
 
                                   
                                 ";
+
+                            foreach ($directors as $row) {
+                                $movie_director = $row["director"];
+                                echo "<p><b>Director:</b> $movie_director </p>";
+                            }
+
+                            echo "
+                            <p><b>Actors:</b>";
+
+                            foreach ($actors as $row) {
+                                $movie_actor = $row["actor"];
+                                echo "
+                                $movie_actor.
+                                ";
+                            }
+                            echo "</p></div>";
                         }
+
+
                         ?>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
@@ -220,7 +281,7 @@ if (mysqli_num_rows($reviews_result) < 1) {
                                         
                                         <h4 style='color: #201e1f'>$user</h4>
                                             <p style='color: #201e1f'>
-                                                <br>$review_movie<br>$rating_movie/5
+                                                <br>Review: $review_movie<br>Rated: $rating_movie/5
                                             </p>
                                         </div>
                                     </div>
@@ -240,7 +301,7 @@ if (mysqli_num_rows($reviews_result) < 1) {
                                             ON user.user_id = review.user_id
                                             INNER JOIN movie
                                             ON movie.movie_id = review.movie_id
-                                            WHERE user.user_id = $user_id;";
+                                            WHERE user.user_id = $user_id AND movie.movie_id = $movie_id;";
 
                         $reviews_result = $dbconn->query($reviews_query);
 
@@ -267,7 +328,7 @@ if (mysqli_num_rows($reviews_result) < 1) {
                                             ";
                         } else {
 
-                            
+
                             echo "
                                 <div class='col-xs-12 col-sm-6 col-md-6'>
                                 <div class='container-fluid' id='profile-panel'>
@@ -276,17 +337,13 @@ if (mysqli_num_rows($reviews_result) < 1) {
                                             <h3 class='panel-title'>Leave a Review! </h3>
                                         </div>
                                             <div class='panel-body' id='profile-panel-body'>
-                                                <form action='<?php echo 'movie.php?filter=$movie_id;?>' method='POST'name='form'>
+                                                <form action='user/add_review.php' method='POST'name='form'>
                                                     <textarea class='form-control' id='message' type='text' placeholder='bingespark' style='height: 10rem;' name='review'></textarea>
-
+                                                    <input class='form-control' type='hidden' value='$movie_id' aria-label='readonly input example' name='movieid' readonly>
+                                                    <input class='form-control form-control-sm' type='number' placeholder='Rating out of 5' name='rating'>
+                                                    Add to Favourites <input type='checkbox' name='selected' value='1'>
                                                     <div class='d-grid gap-2'>
-                                                        <button class='btn btn-primary' type='submit' name='submitform'>Submit Review</button>
-                                                    </div>
-
-                                                    <div class='row'>
-                                                        <div class='col-xs-6 col-sm-4 col-md-4'>
-
-                                                        </div>
+                                                        <button class='btn btn-primary' type='submit' name='submit'>Submit Review</button>
                                                     </div>
                                             </div>
                                         </div>

@@ -191,3 +191,4 @@ if (isset($_POST['submitform'])) {
     <?php include('../partials/footer_2.php'); ?>
 
 </body>
+</html>

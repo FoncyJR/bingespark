@@ -18,50 +18,6 @@ while ($row = $user_query_result->fetch_assoc()) {
     $users[] = $row;
 }
 
-// add admin
-if (isset($_POST["submitadminform"])) {
-
-
-    $name = $_POST["name"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-    $password_repeat = $_POST["password-repeat"];
-
-
-
-    if (emptyInputSignup($name, $email, $password, $password_repeat) != false) {
-        header("location: signup.php?error=empty-input");
-        exit();
-    }
-
-    if (invalidEmail($email) !== false) {
-        header("location: signup.php?error=invalid-email");
-        exit();
-    }
-
-    if (passwordMatch($password, $password_repeat) !== false) {
-        header("location: signup.php?error=passwords-dont-match");
-        exit();
-    }
-
-    if (emailExists($dbconn, $email) !== false) {
-        header("location: signup.php?error=email-taken");
-        exit();
-    }
-
-    createAdmin($dbconn, $name, $email, $password);
-
-    header("admin_profile.php");
-} else {
-    header("location: admin_profile_ad.php");
-    exit();
-}
-
-//delete account
-if (isset($_POST['submitform'])) {
-    $user_id = $row["user_id"];
-    deleteAdminAccount($dbconn, $user_id);
-}
 
 ?>
 <!DOCTYPE html>
@@ -148,22 +104,23 @@ if (isset($_POST['submitform'])) {
                                 <!-- Make active pill #FF4000-->
                                 <li role="presentation"><a href="admin_profile_ml.php">Movies List</a></li>
                                 <li role="presentation" class="active"><a href="admin_profile_ad.php">Administrators</a></li>
-                                <li role="presentation"><a href="admin_profile_ml.php">Users</a></li>
-                                <li role="presentation"><a hhref="admin_profile.php">Settings</a></li>
+                                <li role="presentation"><a href="admin_profile_us.php">Users</a></li>
+                                <li role="presentation"><a href="admin_profile.php">Settings</a></li>
                             </ul>
                         </nav>
                     </div>
 
                     <div class="col-xs-12 col-sm-8 col-md-8">
-                        <div class="panel-heading" id="profile-panel-options">
-                            <h3>Add New Admin</h3>
+                        <div class="panel-heading" id="profile-panel-heading">
+                            <h3 class="panel-title">Add New Admin</h3>
+
                         </div>
 
                         <div class="panel-body" id="profile-panel-body">
 
                             <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0">
 
-                                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" name="form">
+                                <form action="new_admin_include.php" method="POST" name="form">
 
                                     <div class="mb-3">
                                         <div class="panel-body" id="profile-panel-body">
@@ -179,10 +136,7 @@ if (isset($_POST['submitform'])) {
                                             <input type="password" class="form-control" name="password-repeat" placeholder="Repeat Password">
                                         </div>
                                         <div class="panel-body" id="profile-panel-body">
-                                            <input type="number" class="form-control" name="usertype" placeholder="User Type (Admin-1)">
-                                        </div>
-                                        <div class="panel-body" id="profile-panel-body">
-                                            <button type="submit" class="btn btn-primary" name="submitadminform">Submit Admin</button>
+                                            <button type="submit" class="btn btn-primary" name="submit">Submit Admin</button>
                                         </div>
                                     </div>
 
@@ -200,11 +154,7 @@ if (isset($_POST['submitform'])) {
                                     <h3 class="panel-title">Administrators</h3>
 
                                 </div>
-                                <div class="panel-body" id="profile-panel-body">
 
-                                    <a class="btn btn-primary" href="admin_admin-add.php" style="color: #feefdd; background-color: #ff4000; border: none" role="button">New Admin</a>
-
-                                </div>
                                 <div class="panel-body" id="profile-panel-body">
 
 
@@ -222,16 +172,15 @@ if (isset($_POST['submitform'])) {
                                                 $name = $row["name"];
                                                 $username = $row["username"];
 
-                                                $action = $_SERVER['PHP_SELF'];
-
                                                 if ($user_type_id == 1) {
                                                     echo
                                                     "
                                                <h4>$name(Admin)</h4>
                                             
-                                                <form action='$action' method='POST' name='form'>
+                                                <form action='delete_admin.php' method='POST' name='form'>
                                                 <div class='panel-body' id='profile-panel-body'>
-                                                    <div><input type='submit' name='submitform' value='Delete Account' /></div>
+                                                <input class='form-control' type='hidden' value='$user_id' aria-label='readonly input example' name='userid' readonly>
+                                                    <div><input type='submit' name='submit' value='Remove Admin' /></div>
                                                 </div>
                                                 </form>
                                                 ";

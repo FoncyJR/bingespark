@@ -269,6 +269,17 @@ function deleteAccount($dbconn)
         exit();
     }
 
+    //delete userreviews
+    $deletereview = "DELETE FROM `review` WHERE `review`.`review_id` = $user_id";
+
+    $reviewdelete = $dbconn->query($deletereview);
+
+    if (!$reviewdelete) {
+        echo $dbconn->error;
+        exit();
+    }
+
+    // delete user
     $deletesql = "DELETE FROM `user` WHERE `user`.`user_id` = $user_id";
 
     $sqldelete = $dbconn->query($deletesql);
@@ -318,6 +329,23 @@ function checkAdmin($dbconn, $user_id)
     return $result_type;
 }
 
+/*----- User Movies -----*/
+
+function addReview($dbconn, $user_id, $movie_id, $review, $rating, $favourite){
+    
+    $reviewinsert = "INSERT INTO `review` (`review_id`, `user_id`, `movie_id`, `user_review`, `user_rating`, `favourite`)
+                    VALUES (NULL, '$user_id', '$movie_id', '$review', '$rating', '$favourite');";
+
+    $dbinsertreview  = $dbconn->query($reviewinsert);
+
+    if (!$dbinsertreview) {
+        echo $dbconn->error;
+        exit();
+    }
+
+    header("location: ../user/profile.php");
+    exit();
+}
 
 /*----- Admin Movies -----*/
 
@@ -355,6 +383,40 @@ function editMovie($dbconn, $title_esc, $year, $runtime, $revenue, $movie_desc_e
     header("location: admin_profile_ml.php");
 }
 
+function deleteMovie($dbconn, $movie_id){
+    
+    $sql = "SELECT * FROM movie WHERE movie_id = $movie_id";
+
+    $select   = $dbconn->query($sql);
+
+    if (!$select) {
+        echo $dbconn->error;
+        exit();
+    }
+
+    //delete userreviews
+    $deletereview = "DELETE FROM `review` WHERE `review`.`movie_id` = $movie_id";
+
+    $reviewdelete = $dbconn->query($deletereview);
+
+    if (!$reviewdelete) {
+        echo $dbconn->error;
+        exit();
+    }
+
+    //delete user
+    $deletesql = "DELETE FROM `movie` WHERE `movie`.`movie_id` = $movie_id;";
+
+    $sqldelete = $dbconn->query($deletesql);
+
+    if (!$sqldelete) {
+        echo $dbconn->error;
+        exit();
+    }
+    header("location: ../admin/admin_profile_ml.php");
+    exit();
+}
+
 function createAdmin($dbconn, $name, $email, $password)
 {
 
@@ -375,7 +437,7 @@ function createAdmin($dbconn, $name, $email, $password)
         exit();
     }
 
-    header("location: signup.php?error=none");
+    header("location: ../admin/admin_profile_ad.php");
     exit();
 }
 function deleteAdminAccount($dbconn, $user_id)
@@ -389,8 +451,18 @@ function deleteAdminAccount($dbconn, $user_id)
         echo $dbconn->error;
         exit();
     }
+    //delete userreviews
+    $deletereview = "DELETE FROM `review` WHERE `review`.`user_id` = $user_id";
 
-    $deletesql = "DELETE FROM `user` WHERE `user`.`user_id` = $user_id";
+    $reviewdelete = $dbconn->query($deletereview);
+
+    if (!$reviewdelete) {
+        echo $dbconn->error;
+        exit();
+    }
+
+    //delete user
+    $deletesql = "DELETE FROM `user` WHERE `user`.`user_id` = $user_id;";
 
     $sqldelete = $dbconn->query($deletesql);
 
@@ -398,6 +470,60 @@ function deleteAdminAccount($dbconn, $user_id)
         echo $dbconn->error;
         exit();
     }
-    header("location: ../admin/admin_profile.php");
+    header("location: ../admin/admin_profile_ad.php");
+    exit();
+}
+
+function createUserAdmin($dbconn, $name, $email, $password)
+{
+    // // Prepared statements not working - revisit
+    // $sql = $dbconn->prepare("INSERT INTO `user` (`user_id`,`user_type_id`,`name`, `email`, `username`,`password`,`profile_picture`) 
+    //                 VALUES (?, ?, ?, ?, ?, ?, ?);");
+
+    // $usertype = 2;
+    // $null = NULL;
+    // $password_hash = password_hash($password, PASSWORD_DEFAULT);
+
+    // $sql->bind_param("iissssb", $null, $usertype, $name, $email, $email, $password_hash, $null);
+    // $sql->execute();
+    // $sql->close();
+
+    // // prepared statement attempt 2
+    // $statement = "INSERT INTO `user` (`user_id`,`user_type_id`,`name`, `email`, `username`,`password`,`profile_picture`) 
+    //                  VALUES (?, ?, ?, ?, ?, ?, ?);";
+
+    // $insert = mysqli_stmt_init($dbconn);
+
+    // if (!mysqli_stmt_prepare($insert, $statement)) {
+    //     header("location: ../user/signup.php?error=stmtfailed");
+    //     exit();
+    // }
+
+    // $password_hash = password_hash($password, PASSWORD_DEFAULT);
+    // $usertype = 2;
+    // $null = NULL;
+
+    // mysqli_stmt_bind_param($insert ,"iissssb", $null, $usertype, $name, $email, $email, $password_hash, $null);
+    // mysqli_stmt_execute($insert);
+    // mysqli_stmt_close($insert);
+
+
+    $usertype = 2;
+    $password_hash = password_hash($password, PASSWORD_DEFAULT);
+
+    $name = mysqli_escape_string($dbconn, $name);
+    $email = mysqli_escape_string($dbconn, $email);
+    $password_hash = mysqli_escape_string($dbconn, $password_hash);
+
+    $userinsert = "INSERT INTO `user` (`user_id`,`user_type_id`,`name`, `email`, `username`,`password`,`profile_picture`) VALUES (NULL, $usertype, '$name', '$email', '$email', '$password_hash', NULL);";
+
+    $dbinsert   = $dbconn->query($userinsert);
+
+    if (!$dbinsert) {
+        echo $dbconn->error;
+        exit();
+    }
+
+    header("location: ../admin/admin_profile_us.php");
     exit();
 }

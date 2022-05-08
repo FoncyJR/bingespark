@@ -49,29 +49,28 @@ session_start();
 
                                 <?php
 
-                                // sign up error and success messages
-                                if (isset($_GET["error"])) {
+                                // // sign up error and success messages
+                                // if (isset($_GET["error"])) {
 
-                                    if ($_GET["error"] == "empy-input") {
+                                //     if ($_GET["error"] == "empy-input") {
 
-                                        echo "<p>Uh oh, fill all fields!</p>";
-                                    } else if (isset($_GET["error"]) == "invalid-email") {
+                                //         echo "<p>Uh oh, fill all fields!</p>";
+                                //     } else if (isset($_GET["error"]) == "invalid-email") {
 
-                                        echo "<p>Please enter a valid email address.</p>";
-                                    } else if (isset($_GET["error"]) == "passwords-dont-match") {
+                                //         echo "<p>Please enter a valid email address.</p>";
+                                //     } else if (isset($_GET["error"]) == "passwords-dont-match") {
 
-                                        echo "<p>Passwords don't match.</p>";
-                                    } else if (isset($_GET["error"]) == "email-taken") {
+                                //         echo "<p>Passwords don't match.</p>";
+                                //     } else if (isset($_GET["error"]) == "email-taken") {
 
-                                        echo "<p>Sorry, this email is in use. Please try another..</p>";
-                                    } else if (isset($_GET["error"]) == "none") {
+                                //         echo "<p>Sorry, this email is in use. Please try another..</p>";
+                                //     } else if (isset($_GET["error"]) == "none") {
 
-                                        echo "<p>Welcome to BingeSpark!";
-                                        header("location: profile.php");
-                                    } else {
-                                        echo "<p> Error. Please try again later.</p>";
-                                    }
-                                }
+                                //         echo "<p>Welcome to BingeSpark!</p>";
+                                //         header("location: profile.php");
+
+                                //     }
+                                // }
 
                                 ?>
                             </form>

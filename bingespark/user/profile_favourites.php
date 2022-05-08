@@ -2,21 +2,34 @@
 session_start();
 
 include_once("../partials/functions.php");
+// db connection
+include("../database/dbconn.php");
 
-//change username
-if (isset($_SESSION["change-username"])) {
-    changeUsername($dbconn);
-    header("profile.php?error-none-username-changed");
+
+// session vars
+$user_id = $_SESSION["user_id"];
+
+// gather data from db
+$reviews_query = "SELECT review.review_id, review.user_review, review.user_rating, review.favourite, user.user_id, user.name, movie.title, movie.release_year, movie.thumbnail FROM review
+INNER JOIN user
+ON user.user_id = review.user_id
+INNER JOIN movie
+ON movie.movie_id = review.movie_id
+WHERE user.user_id = $user_id;";
+
+$reviews_result = $dbconn->query($reviews_query);
+
+if (!$reviews_result) {
+    echo $dbconn->query($reviews_query);
+}
+$user_reviews = array();
+
+while ($row = $reviews_result->fetch_assoc()) {
+    $user_reviews[] = $row;
 }
 
-//change password
-if (isset($_SESSION["change-password"])) {
-}
-
-//delete account
-if (isset($_POST['submitform'])) {
-    deleteAccount($dbconn);
-}
+// "INSERT INTO `review` (`review_id`, `user_id`, `movie_id`, `user_review`, `user_rating`, `favourite`) 
+// VALUES (NULL, '$user_id', '$movie_id', '$review', '$rating', '$favourite');"
 
 
 ?>
@@ -99,14 +112,14 @@ if (isset($_POST['submitform'])) {
                     <div class="col-xs-12 col-sm-4 col-md-4">
                         <div class="panel-heading" id="profile-panel-options">
                         </div>
-                       
+
                         <nav id="profile-pills">
                             <ul class="nav nav-pills nav-stacked" id="pills-stacked">
                                 <!-- Make active pill #FF4000-->
 
                                 <li role="presentation" class="active"><a href="profile_favourites.php">Favourites</a></li>
-                                <li role="presentation" ><a href="profile_review.php">Reviews</a></li>
-                                <li role="presentation" ><a href="profile.php">Settings</a></li>
+                                <li role="presentation"><a href="profile_review.php">Reviews</a></li>
+                                <li role="presentation"><a href="profile.php">Settings</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -119,37 +132,42 @@ if (isset($_POST['submitform'])) {
 
                             <div class="panel panel-default">
                                 <div class="panel-heading" id="profile-panel-heading">
-                                    <h3 class="panel-title">Options</h3>
+                                    <h2 class="panel-title">My Favourites</h2>
+
+
+                                    <div class='panel-body' id='profile-panel-body'>
+                                        <?php
+
+                                        foreach ($user_reviews as $row) {
+                                            $movietitle = $row["title"];
+                                            $yearreleased = $row["release_year"];
+                                            $review_movie = $row["user_review"];
+                                            $rating_movie = $row["user_rating"];
+                                            $fave = $row["favourite"];
+
+                                            if ($fave == 1) {
+
+
+                                                echo
+                                                "
+                                                <div class='panel-body' id='profile-panel-body'>
+                                                    <div class='panel-body'>
+                                                    <h3 style='color: #201e1f'>$movietitle($yearreleased) <img src='../images/fave.png' alt='Favourite!' width='50px'></h3>
+                                                   
+                                                    </div>
+                                                </div>
+                                            ";
+                                            } else if($fave == 0){
+                                                echo "<h3>Not seeing your favourite? <a href='explore.php'> Browse our movies here!<a/>";
+                                            }
+                                        }
+                                        ?>
+                                    </div>
 
                                 </div>
                                 <div class="panel-body" id="profile-panel-body">
-                                    <form action="<?php echo $_SERVER['PHP_SELF']; ?> " method="POST" name="form">
 
-                                        <div class="panel-body" id="profile-panel-body">
-                                            <label for="formFile" class="form-label">Change Username</label>
-                                            <input type="text" name="change-username" />
-                                            <button type="button" class="btn btn-primary">Go</button>
-                                        </div>
 
-                                        <div class="panel-body" id="profile-panel-body">
-                                            <label for="formFile" class="form-label">Change Password</label>
-                                            <input type="text" name="change-password" />
-                                            <button type="button" class="btn btn-primary">Go</button>
-                                        </div>
-
-                                        <div class="panel-body" id="profile-panel-body">
-                                            <div class="mb-3">
-                                                <label for="formFile" class="form-label">Upload Profile Picture</label>
-                                                <input class="form-control" type="file" id="formFile" id="upload-btn">
-                                            </div>
-                                        </div>
-                                    </form>
-
-                                    <form action="action=" <?php echo $_SERVER['PHP_SELF']; ?> method="POST" name="form">
-                                        <div class="panel-body" id="profile-panel-body">
-                                            <div><input type="submit" name="submitform" value="Delete Account" /></div>
-                                        </div>
-                                    </form>
                         </ul>
                     </div>
                 </div>

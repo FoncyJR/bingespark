@@ -103,8 +103,8 @@ while ($row = $explore_query_result->fetch_assoc()) {
                                 <!-- Make active pill #FF4000-->
                                 <li role="presentation" class="active"><a href="admin_profile_ml.php">Movies List</a></li>
                                 <li role="presentation"><a href="admin_profile_ad.php">Administrators</a></li>
-                                <li role="presentation"><a href="admin_profile_ml.php">Users</a></li>
-                                <li role="presentation"><a hhref="admin_profile.php">Settings</a></li>
+                                <li role="presentation"><a href="admin_profile_us.php">Users</a></li>
+                                <li role="presentation"><a href="admin_profile.php">Settings</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -117,13 +117,22 @@ while ($row = $explore_query_result->fetch_assoc()) {
 
                         <div class="panel panel-default">
                             <div class="panel-heading" id="profile-panel-heading">
-                                <h3 class="panel-title">Administrator</h3>
+                                <h3 class="panel-title">Movies</h3>
 
                             </div>
                             <div class="panel-body" id="profile-panel-body">
 
-                                <a class="btn btn-primary" style="color: #feefdd; background-color: #ff4000; border: none" href="admin_movie-add.php" role="button">Add Admin</a>
-
+                                <a class="btn btn-primary" style="color: #feefdd; background-color: #ff4000; border: none" href="admin_movie-add.php" role="button">Add Movie</a>
+                                <form action="../search/explore_search.php" method="POST" class="navbar-form navbar-right">
+                                    <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <input type="text" name="search" value="" class="form-control" placeholder="Go to movie..." aria-label="Search bar" aria-describedby="basic-addon2">
+                                            <div class="control">
+                                                <button class="btn btn-default" type="submit" id="button-addon2">Go</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                             <div class="panel-body" id="profile-panel-body">
 
@@ -151,7 +160,7 @@ while ($row = $explore_query_result->fetch_assoc()) {
 
                                             echo "
                                        
-                                            <a href='movie.php?filter=$movie_id'><h4>$movie_title($movie_year)</h4></a>
+                                            <a href='movie_admin.php?filter=$movie_id'><h4>$movie_title($movie_year)</h4></a>
                                            
                                             ";
                                         }

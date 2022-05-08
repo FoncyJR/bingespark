@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 // db connection
 include("../database/dbconn.php");
 
@@ -9,19 +11,7 @@ include("explore_filter.php");
 // setting variables from dropdown for filter
 if (isset($_POST["genre-filter"])) {
     $genre = $_POST["genre-filter"];
-}
-
-if (isset($_POST["actor-filter"])) {
-    $actor = $_POST["actor-filter"];
-}
-
-if (isset($_POST["director-filter"])) {
-    $director = $_POST["director-filter"];
-}
-
-// checks if one of the filters has been used and changes the query accordingly
-if (isset($genre)) {
-    $filter_query = "SELECT DISTINCT  movie.movie_id, movie.release_year,
+    $filter_query = "SELECT movie.movie_id, movie.release_year,
     movie.title, movie.runtime, movie.thumbnail, movie.movie_desc, genre.genre
     FROM movie
     INNER JOIN  movie_genre
@@ -29,9 +19,10 @@ if (isset($genre)) {
     INNER JOIN genre
     ON genre.genre_id=movie_genre.genre_id
     WHERE genre.genre = '$genre';";
-}
-if (isset($actor)) {
-    $filter_query = "SELECT DISTINCT  movie.movie_id, movie.release_year,
+} else
+if (isset($_POST["actor-filter"])) {
+    $actor = $_POST["actor-filter"];
+    $filter_query = "SELECT movie.movie_id, movie.release_year,
     movie.title, movie.runtime, movie.thumbnail, movie.movie_desc, actor.actor
     FROM movie
     INNER JOIN  movie_actor
@@ -39,9 +30,10 @@ if (isset($actor)) {
     INNER JOIN actor
     ON actor.actor_id=movie_actor.actor_id
     WHERE actor.actor = '$actor';";
-}
-if (isset($director)) {
-    $filter_query = "SELECT DISTINCT  movie.movie_id, movie.release_year,
+} else
+if (isset($_POST["director-filter"])) {
+    $director = $_POST["director-filter"];
+    $filter_query = "SELECT movie.movie_id, movie.release_year,
     movie.title, movie.runtime, movie.thumbnail, movie.movie_desc, director.director
     FROM movie
     INNER JOIN  movie_director
@@ -49,7 +41,23 @@ if (isset($director)) {
     INNER JOIN director
     ON director.director_id=movie_director.director_id
     WHERE director.director = '$director';";
+} else if (isset($_POST["revenue-filter"])) {
+    $revenue = $_POST["revenue-filter"];
+    $filter_query = "SELECT movie.movie_id, movie.release_year,
+    movie.title, movie.runtime, movie.revenue, movie.thumbnail, movie.movie_desc
+    FROM movie
+    WHERE movie.revenue >'$revenue';";
+} else if (isset($_POST["runtime-filter"])) {
+    $runtime = $_POST["runtime-filter"];
+    $filter_query = "SELECT movie.movie_id, movie.release_year,
+    movie.title, movie.runtime, movie.revenue, movie.thumbnail, movie.movie_desc
+    FROM movie
+    WHERE movie.runtime >'$runtime';";
+} else {
+    header("location: ../explore.php");
 }
+
+
 
 $filter_query_result = $dbconn->query($filter_query);
 
@@ -59,8 +67,8 @@ if (!$filter_query_result) {
 $filter_result = array();
 
 while ($row = $filter_query_result->fetch_assoc()) {
-    $filter_result[] = $row;
-    //array_push($filter_result, $row);
+    //  $filter_result[] = $row;
+    array_push($filter_result, $row);
 }
 
 ?>
@@ -79,89 +87,12 @@ while ($row = $filter_query_result->fetch_assoc()) {
     <?php include('../partials/navbar_2.php'); ?>
 
     <!--Body-->
+
     <div class="container-fluid" id="profile-panel">
         <div class="panel panel-default">
             <div class="panel-heading" id="profile-panel-heading">
-                <h3 class="panel-title">Explore</h3>
-            </div>
-
-            <div class="panel-body" id="profile-panel-body">
-
-                <div class="row" id="explore-filter">
-
-                    <div class="col-xs-12 col-sm-4 col-md-4" id="explore-filter-dropdown">
-                        <form action="explore_filter_result.php" method="POST">
-                            <select name="genre">
-                                <option>Genre</option>
-                                <?php
-
-                                foreach ($genres as $row) {
-                                    $genre_filter = $row["genre"];
-                                ?>
-                                    <option>
-                                        <?php echo $genre_filter; ?>
-                                    </option>
-                                <?php } ?>
-                            </select>
-                            <div class="control">
-                                <button class="btn btn-default" type="submit" id="button-addon2">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-
-                    <div class="col-xs-12 col-sm-4 col-md-4" id="explore-filter-dropdown">
-                        <form action="explore_filter_result.php" method="POST">
-                            <select name="actor">
-                                <option>Actor</option>
-                                <?php
-
-                                foreach ($actors as $row) {
-                                    $actor_filter = $row["actor"];
-                                ?>
-                                    <option>
-                                        <?php echo $actor_filter; ?>
-                                    </option>
-                                <?php } ?>
-                            </select>
-                            <div class="control">
-                                <button class="btn btn-default" type="submit" id="button-addon2">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-
-                    <div class="col-xs-12 col-sm-4 col-md-4" id="explore-filter-dropdown">
-                        <form action="explore_filter_result.php" method="POST">
-                            <select name="director">
-                                <option>Director</option>
-                                <?php
-
-                                foreach ($directors as $row) {
-                                    $director_filter = $row["director"];
-                                ?>
-                                    <option>
-                                        <?php echo $director_filter; ?>
-                                    </option>
-                                <?php } ?>
-                            </select>
-                            <div class="control">
-                                <button class="btn btn-default" type="submit" id="button-addon2">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    </div>
-    </div>
-    </div>
-    <div class="container-fluid" id="profile-panel">
-        <div class="panel panel-default">
-            <div class="panel-heading" id="profile-panel-heading">
-                <h4 class="panel-title">Movies</h4>
+                <h4 class="panel-title">Results</h4>
+                <h5><a href="../explore.php">Back</a></h5>
             </div>
             <div class="panel-body" id="profile-panel-body">
                 <div class="row">
@@ -201,6 +132,7 @@ while ($row = $filter_query_result->fetch_assoc()) {
                         ?>
 
                     </div>
+                    
 
                 </div>
 

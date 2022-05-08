@@ -3,6 +3,12 @@
 include_once("functions.php");
 include("../database/dbconn.php");
 
+if (isset($_SESSION["user_id"])) {
+
+
+    $usertype = $_SESSION['user_type_id'];
+}
+
 ?>
 <nav class="navbar navbar-default" id="navbar">
     <div class="container-fluid">
@@ -45,30 +51,33 @@ include("../database/dbconn.php");
 
                 if (isset($_SESSION["user_id"])) {
 
-                    // echo "
-                    // <li><a href='../user/logout_include.php'>Log Out</a></li>
-                    // </ul>
-                    // <ul class='nav navbar-nav navbar-right'>
-                    //     <li class='active'><a href='../admin/admin_profile.php' id='profile-btn'>Admin<span class='sr-only'>(current)</span></a></li>
+                    if ($usertype == 1) {
 
-                    // ";
+                        echo "
+                            <li><a href='../user/logout_include.php'>Log Out</a></li>
+                            </ul>
+                            <ul class='nav navbar-nav navbar-right'>
+                                <li class='active'><a href='../admin/admin_profile.php' id='profile-btn'>Admin<span class='sr-only'>(current)</span></a></li>
 
-                    echo "
-                        <li><a href='../user/logout_include.php'>Log Out</a></li>
-                        </ul>
-                        <ul class='nav navbar-nav navbar-right'>
-                            <li class='active'><a href='../user/profile.php' id='profile-btn'>Profile<span class='sr-only'>(current)</span></a></li>
+                            ";
+                    } else if ($usertype == 2) {
+                        echo "
+                            <li><a href='../user/logout_include.php'>Log Out</a></li>
+                            </ul>
+                            <ul class='nav navbar-nav navbar-right'>
+                                <li class='active'><a href='../user/profile.php' id='profile-btn'>Profile<span class='sr-only'>(current)</span></a></li>
 
-                        ";
+                            ";
+                    }
                 } else {
                     echo "
                         <li><a href='../user/signup.php'>Sign Up</a></li>
                         </ul>
                         <ul class='nav navbar-nav navbar-right'>
-                        <li class='active'><a href='../user/login.php' id='profile-btn'>Log In<span class='sr-only'>(current)</span></a></li>
+                            <li class='active'><a href='../user/login.php' id='profile-btn'>Log In<span class='sr-only'>(current)</span></a></li>
 
                         ";
-                                }
+                }
 
                 ?>
             </ul>
