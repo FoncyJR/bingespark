@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 08, 2022 at 04:36 PM
+-- Generation Time: May 08, 2022 at 10:15 PM
 -- Server version: 5.7.34
 -- PHP Version: 8.0.8
 
@@ -11212,7 +11212,7 @@ CREATE TABLE `review` (
   `movie_id` int(11) NOT NULL,
   `user_review` text NOT NULL,
   `user_rating` decimal(6,2) DEFAULT NULL,
-  `favourite` tinyint(2) DEFAULT '0'
+  `favourite` tinyint(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -11221,11 +11221,12 @@ CREATE TABLE `review` (
 
 INSERT INTO `review` (`review_id`, `user_id`, `movie_id`, `user_review`, `user_rating`, `favourite`) VALUES
 (3, 4, 112, 'abc', '5.00', 1),
-(4, 6, 1, 'asdopkjalsc', '3.00', 0),
 (5, 4, 4, 'Decent', '4.90', 1),
 (6, 4, 488, 'Good show', '3.00', 1),
-(7, 15, 1, 'abc', '3.00', 0),
-(8, 14, 1, 'I love this film', '5.00', 1);
+(9, 16, 385, 'Scared the life out of me', '1.00', 0),
+(10, 16, 111, 'Loved it', '5.00', 1),
+(11, 17, 1, 'Unrealistic, love Paul Rudd', '4.00', 0),
+(12, 16, 1, 'Amaaaaazing', '5.00', NULL);
 
 -- --------------------------------------------------------
 
@@ -11249,13 +11250,9 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `user_type_id`, `name`, `email`, `username`, `password`, `profile_picture`) VALUES
 (4, 2, 'Sue Perb', 'sueperb@gmail.com', 'sueperb@gmail.com', 0x243279243130245052745a696b2e5273573466636175726261334b594f4a6250354941575435616c2e6a30612e68783862664753413636332e313679, NULL),
-(6, 2, 'TEST', 'TEST@email.com', 'TEST@email.com', 0x243279243130244a434d466b5679315850705a586a584b63564a552e4f557430596936524a36653046714d51776f6751582e713272544279714d7465, NULL),
-(7, 1, 'MC', 'mc@email.com', 'mc@email.com', 0x243279243130242f716336624c42553678756f7170712f682f6678614f512e316c79753759596557672f73314e316c68736762663035687066565369, NULL),
-(8, 1, 'TESTER', 'test@tester.com', 'test@tester.com', 0x24327924313024456b5a7635487a464854582e766650344d625469664f764e6f384a4f66707a4545344c62486f464433547673316b5a546842356932, NULL),
-(11, 2, 'Laurence', 'la@email.com', 'la@email.com', 0x243279243130245250724344586855306a554e755773304c41643373657468476c794a3433674a624b6b5564792f6876524d795455506b2f73537936, NULL),
-(12, 2, 'Laurence123', 'la123@email.com', 'la123@email.com', 0x24327924313024594e416e5546644744734b426f526f7a6172342f75652e41354e7a724b646b6650676e444a726c7936584351783778367437674543, NULL),
-(14, 2, 'testUser', 'usertest@email.com', 'usertest@email.com', 0x2432792431302463706c596a6649493971713734705637647267494d75747430484d355774416436684e6e50557454557a78632f6937644838646857, NULL),
-(15, 2, 'abc', 'abc@email.com', 'abc@email.com', 0x243279243130243978746e6b77556544394a5037664756746d5750754f5a63785270655a6d33324c32623570533738456c556e68542e6c4e74665569, NULL);
+(16, 2, 'Niall McDonagh', 'nmd@email.com', 'nmd@email.com', 0x243279243130246e586564696571566971414a576554447a774d617a2e58626558614b456132434b573179564676597669443035784a646577475565, NULL),
+(17, 2, 'Nosmo King', 'nosmoking@email.com', 'nosmoking@email.com', 0x2432792431302474357a356171754e4c772f59566c336b78753954624f4c74577071374d2f466a567a565257415a43584f6757617062535564413857, NULL),
+(18, 1, 'Markus Condren', 'markus@admin.com', 'markus@admin.com', 0x24327924313024414332306f476b6e435270675368524b68355a6b38753977573258716d4e4e32475050306d7561423043323938527a507473544436, NULL);
 
 -- --------------------------------------------------------
 
@@ -11400,13 +11397,13 @@ ALTER TABLE `movie_genre`
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `user_type`

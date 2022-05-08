@@ -11,15 +11,6 @@ $movie_id = htmlentities(urldecode($_GET["filter"]));
 // gather data from db
 $explore_query = "SELECT * FROM movie WHERE movie_id = '$movie_id';";
 
-// REFINE TO JUST SELECT THE THINGS YOU NEED FOR ECHO
-// $explore_query = "SELECT * FROM movie
-// INNER JOIN movie_actor ON movie.movie_id
-// INNER JOIN actor ON actor.actor_id
-// INNER JOIN movie_genre ON movie.movie_id
-// INNER JOIN genre ON genre.genre_id
-// INNER JOIN movie_director ON movie.movie_id
-// INNER JOIN director ON director.director_id WHERE movie_id = '$movie_id;";
-
 $explore_query_result = $dbconn->query($explore_query);
 
 $movies = array();
@@ -34,6 +25,49 @@ while ($row = $explore_query_result->fetch_assoc()) {
     $movies[] = $row;
 }
 
+//Directors array
+$explore_query_director = "SELECT * FROM director
+                INNER JOIN movie_director
+                ON director.director_id = movie_director.director_id
+                INNER JOIN movie
+                ON movie.movie_id = movie_director.movie_id
+                WHERE movie.movie_id = '$movie_id';";
+
+$explore_query_result_director = $dbconn->query($explore_query_director);
+
+$directors = array();
+
+if (!$explore_query_result_director) {
+    echo $dbconn->query($explore_query_director);
+}
+
+
+while ($row = $explore_query_result_director->fetch_assoc()) {
+
+    $directors[] = $row;
+}
+
+//Movies array
+$explore_query_actor = "SELECT * FROM actor
+                        INNER JOIN movie_actor
+                        ON actor.actor_id = movie_actor.actor_id
+                        INNER JOIN movie
+                        ON movie.movie_id = movie_actor.movie_id
+                        WHERE movie.movie_id = '$movie_id';";
+
+$explore_query_result_actor = $dbconn->query($explore_query_actor);
+
+$actors = array();
+
+if (!$explore_query_result_actor) {
+    echo $dbconn->query($explore_query_actor);
+}
+
+
+while ($row = $explore_query_result_actor->fetch_assoc()) {
+
+    $actors[] = $row;
+}
 
 
 
@@ -141,12 +175,23 @@ while ($row = $explore_query_result->fetch_assoc()) {
 
                                     <p><b>Description</b><br><br>$movie_description</p>
                                     <p><b>Runtime:</b> $movie_runtime mins <b>Revenue:</b> <span>&#36;</span>$movie_revenue million</p>
-                                    <p><b>Director:</b> </p>
-                                    <p><b>Actors: </b>
-                                </div>
-
                                   
                                 ";
+                            foreach ($directors as $row) {
+                                $movie_director = $row["director"];
+                                echo "<p><b>Director:</b> $movie_director </p>";
+                            }
+
+                            echo "
+                                <p><b>Actors:</b>";
+
+                            foreach ($actors as $row) {
+                                $movie_actor = $row["actor"];
+                                echo "
+                                    $movie_actor.
+                                    ";
+                            }
+                            echo "</p></div>";
                         }
                         ?>
                     </div>

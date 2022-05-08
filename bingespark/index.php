@@ -31,7 +31,7 @@ if (mysqli_num_rows($reviews_result) < 1) {
 //REVIEW data by year
 
 $movies_query_year = "SELECT movie.title, movie.release_year, movie.thumbnail FROM movie
-                    WHERE movie.release_year = 2021 LIMIT 3;";
+                    WHERE movie.release_year = 2000 LIMIT 3;";
 // set to 2021 for demo purposes as no newer films in database
 // Set to YEAR(CURDATE()) normally
 
@@ -47,8 +47,7 @@ while ($row = $movies_result_year->fetch_assoc()) {
 }
 
 
-if (mysqli_num_rows($reviews_result) < 1) {
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -89,12 +88,12 @@ if (mysqli_num_rows($reviews_result) < 1) {
                             <div class="col-sm-12 col-sm-6 col-md-6 col-lg-6">
                                 <h4>Current Favourite Movies</h4>
 
-                                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                                <div id="carousel-example-generic-classic" class="carousel slide" data-ride="carousel">
                                     <!-- Indicators -->
                                     <ol class="carousel-indicators">
-                                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                        <li data-target="#carousel-example-generic-classic" data-slide-to="0" class="active"></li>
+                                        <li data-target="#carousel-example-generic-classic" data-slide-to="1"></li>
+                                        <li data-target="#carousel-example-generic-classic" data-slide-to="2"></li>
                                     </ol>
 
                                     <!-- Wrapper for slides -->
@@ -138,11 +137,11 @@ if (mysqli_num_rows($reviews_result) < 1) {
                                     </div>
 
                                     <!-- Controls -->
-                                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                    <a class="left carousel-control" href="#carousel-example-generic-classic" role="button" data-slide="prev">
                                         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                                         <span class="sr-only">Previous</span>
                                     </a>
-                                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                    <a class="right carousel-control" href="#carousel-example-generic-classic" role="button" data-slide="next">
                                         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                                         <span class="sr-only">Next</span>
                                     </a>
@@ -154,7 +153,7 @@ if (mysqli_num_rows($reviews_result) < 1) {
 
                             <!--News-->
                             <div class="col-sm-12 col-sm-6 col-md-6 col-lg-6">
-                                <h4>New Movies</h4>
+                                <h4>Classics</h4>
 
                                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                                     <!-- Indicators -->

@@ -341,7 +341,7 @@ if (mysqli_num_rows($reviews_result) < 1) {
                                                     <textarea class='form-control' id='message' type='text' placeholder='bingespark' style='height: 10rem;' name='review'></textarea>
                                                     <input class='form-control' type='hidden' value='$movie_id' aria-label='readonly input example' name='movieid' readonly>
                                                     <input class='form-control form-control-sm' type='number' placeholder='Rating out of 5' name='rating'>
-                                                    Add to Favourites <input type='checkbox' name='selected' value='1'>
+                                                    Add to Favourites <input type='checkbox' name='selected' >
                                                     <div class='d-grid gap-2'>
                                                         <button class='btn btn-primary' type='submit' name='submit'>Submit Review</button>
                                                     </div>
