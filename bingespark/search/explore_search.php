@@ -64,9 +64,11 @@ while ($row = $search_query_result->fetch_assoc()) {
                 <div class="row" id="explore-filter">
 
                     <div class="col-xs-12 col-sm-4 col-md-4" id="explore-filter-dropdown">
-                        <form action="/explore_filter_result.php" method="POST">
-                            <select name="genre">
-                                <option>Genre</option>
+
+                        <form action="explore_filter_result.php" method="POST">
+                            <option>Genre</option>
+                            <select name="genre-filter">
+
                                 <?php
 
                                 foreach ($genres as $row) {
@@ -75,18 +77,23 @@ while ($row = $search_query_result->fetch_assoc()) {
                                     <option>
                                         <?php echo $genre_filter; ?>
                                     </option>
-                                <?php } ?>
+                                <?php }
+
+                                // echo "
+                                // <input class='form-control' type='hidden' value='$genre_filter' aria-label='readonly input example' name='genre' readonly>";
+                                ?>
                             </select>
                             <div class="control">
-                                <button class="btn btn-default" type="submit" id="button-addon2">Submit</button>
+                                <button class="btn btn-default" type="submit-genre" id="button-addon2">Submit</button>
                             </div>
                         </form>
                     </div>
 
                     <div class="col-xs-12 col-sm-4 col-md-4" id="explore-filter-dropdown">
                         <form action="explore_filter_result.php" method="POST">
-                            <select name="actor">
-                                <option>Actor</option>
+                            <option>Actor</option>
+                            <select name="actor-filter">
+
                                 <?php
 
                                 foreach ($actors as $row) {
@@ -98,15 +105,17 @@ while ($row = $search_query_result->fetch_assoc()) {
                                 <?php } ?>
                             </select>
                             <div class="control">
-                                <button class="btn btn-default" type="submit" id="button-addon2">Submit</button>
+                                <button class="btn btn-default" type="submit-actor" id="button-addon2">Submit</button>
                             </div>
                         </form>
                     </div>
 
                     <div class="col-xs-12 col-sm-4 col-md-4" id="explore-filter-dropdown">
                         <form action="explore_filter_result.php" method="POST">
-                            <select name="director">
-                                <option>Director</option>
+                            <option>Director</option>
+
+                            <select name="director-filter">
+
                                 <?php
 
                                 foreach ($directors as $row) {
@@ -121,6 +130,51 @@ while ($row = $search_query_result->fetch_assoc()) {
                                 <button class="btn btn-default" type="submit" id="button-addon2">Submit</button>
                             </div>
                         </form>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" id="explore-filter-dropdown">
+                        <form action="explore_filter_result.php" method="POST">
+                            <option>Revenue (million)</option>
+
+                            Above:<select name="revenue-filter">
+
+                                <option value="100">100</option>
+                                <option value="200">200</option>
+                                <option value="300">300</option>
+                                <option value="400">400</option>
+                                <option value="500">500</option>
+                                <option value="600">600</option>
+                                <option value="700">700</option>
+                                <option value="800">800</option>
+
+                            </select>
+                            <div class="control">
+                                <button class="btn btn-default" type="submit" id="button-addon2">Submit</button>
+                            </div>
+                        </form>
+
+
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" id="explore-filter-dropdown">
+                        <form action="explore_filter_result.php" method="POST">
+                            <option>Runtime (minutes)</option>
+
+                            Longer than:<select name="runtime-filter">
+
+                                <option value="60">60</option>
+                                <option value="90">90</option>
+                                <option value="120">120</option>
+                                <option value="180">180</option>
+                                <option value="240">240</option>
+                                <option value="300">300</option>
+
+                            </select>
+                            <div class="control">
+                                <button class="btn btn-default" type="submit" id="button-addon2">Submit</button>
+                            </div>
+                        </form>
+
                     </div>
 
                 </div>

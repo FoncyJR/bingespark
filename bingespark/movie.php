@@ -11,15 +11,6 @@ $movie_id = htmlentities(urldecode($_GET["filter"]));
 // gather data from db
 $explore_query = "SELECT * FROM movie WHERE movie_id = '$movie_id';";
 
-// REFINE TO JUST SELECT THE THINGS YOU NEED FOR ECHO
-// $explore_query = "SELECT * FROM movie
-// INNER JOIN movie_actor ON movie.movie_id
-// INNER JOIN actor ON actor.actor_id
-// INNER JOIN movie_genre ON movie.movie_id
-// INNER JOIN genre ON genre.genre_id
-// INNER JOIN movie_director ON movie.movie_id
-// INNER JOIN director ON director.director_id WHERE movie_id = '$movie_id;";
-
 $explore_query_result = $dbconn->query($explore_query);
 
 $movies = array();

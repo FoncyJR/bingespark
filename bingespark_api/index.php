@@ -3,7 +3,7 @@
 // set object to json
 header('Content-Type: application/json');
 
-include("../database/dbconn.php");
+include("../bingespark/database/dbconn.php");
 
 // key: 'all' returns all the data from db relating to all moviesß
 if (isset($_GET['all'])) {

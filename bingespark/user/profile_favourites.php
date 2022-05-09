@@ -158,7 +158,7 @@ while ($row = $reviews_result->fetch_assoc()) {
                                                 </div>
                                             ";
                                             } else if($fave == 0){
-                                                echo "<h3>Not seeing your favourite? <a href='explore.php'> Browse our movies here!<a/>";
+                                                echo "<h3>Not seeing your favourite? <a href='../explore.php'> Browse our movies here!<a/>";
                                             }
                                         }
                                         ?>
