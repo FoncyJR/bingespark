@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:8889
--- Generation Time: May 08, 2022 at 10:15 PM
--- Server version: 5.7.34
--- PHP Version: 8.0.8
+-- Host: localhost
+-- Generation Time: May 09, 2022 at 12:10 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.4.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bingespark_final_test`
+-- Database: `mcondren03`
 --
 
 -- --------------------------------------------------------
@@ -3040,7 +3040,7 @@ CREATE TABLE `movie` (
   `runtime` int(11) NOT NULL,
   `revenue` decimal(6,2) NOT NULL,
   `movie_desc` text NOT NULL,
-  `thumbnail` text
+  `thumbnail` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -11241,7 +11241,7 @@ CREATE TABLE `user` (
   `email` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varbinary(255) DEFAULT NULL,
-  `profile_picture` text
+  `profile_picture` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -11252,7 +11252,9 @@ INSERT INTO `user` (`user_id`, `user_type_id`, `name`, `email`, `username`, `pas
 (4, 2, 'Sue Perb', 'sueperb@gmail.com', 'sueperb@gmail.com', 0x243279243130245052745a696b2e5273573466636175726261334b594f4a6250354941575435616c2e6a30612e68783862664753413636332e313679, NULL),
 (16, 2, 'Niall McDonagh', 'nmd@email.com', 'nmd@email.com', 0x243279243130246e586564696571566971414a576554447a774d617a2e58626558614b456132434b573179564676597669443035784a646577475565, NULL),
 (17, 2, 'Nosmo King', 'nosmoking@email.com', 'nosmoking@email.com', 0x2432792431302474357a356171754e4c772f59566c336b78753954624f4c74577071374d2f466a567a565257415a43584f6757617062535564413857, NULL),
-(18, 1, 'Markus Condren', 'markus@admin.com', 'markus@admin.com', 0x24327924313024414332306f476b6e435270675368524b68355a6b38753977573258716d4e4e32475050306d7561423043323938527a507473544436, NULL);
+(18, 1, 'Markus Condren', 'markus@admin.com', 'markus@admin.com', 0x24327924313024414332306f476b6e435270675368524b68355a6b38753977573258716d4e4e32475050306d7561423043323938527a507473544436, NULL),
+(19, 2, 'John Busch (User)', 'jb@email.com', 'jb@email.com', 0x24327924313024446279584a617144785a6b733430482f526e2f75494f2e775076524534416f5453417861486f47745431755831762e54316c696943, NULL),
+(21, 1, 'John Busch', 'jbadmin@email.com', 'jbadmin@email.com', 0x243279243130244457555a674355594b492f6672364c4649354b7078753972686e534a366d467039346f686a755469583278706c4848684e63705175, NULL);
 
 -- --------------------------------------------------------
 
@@ -11403,7 +11405,7 @@ ALTER TABLE `review`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `user_type`
